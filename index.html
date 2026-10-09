@@ -253,7 +253,7 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">created by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Keine amtliche Prüfungshilfe · Stand Oktober 2026 · created by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -584,8 +584,11 @@ function renderExam(main) {
 
   let h = '<div class="exam-bar"><div class="eb"><span class="eb-t">Frage ' + (curIdx + 1) + ' von ' + exam.items.length + '</span>' +
     '<span class="eb-s">' + esc(q.k) + '</span></div>' +
-    '<div class="eb eb-r"><span class="timer' + (restSek < 300 ? ' low' : '') + '" id="exam-timer">' +
-    Math.floor(restSek / 60) + ':' + String(restSek % 60).padStart(2, '0') + '</span></div></div>';
+    '<div class="eb eb-r" style="display:flex; flex-direction:row; align-items:center; gap:.5rem;">' +
+    '<span class="timer' + (restSek < 300 ? ' low' : '') + '" id="exam-timer">' +
+    Math.floor(restSek / 60) + ':' + String(restSek % 60).padStart(2, '0') + '</span>' +
+    '<button class="btn danger" style="min-height:36px; padding:.2rem .65rem; font-size:.85rem;" onclick="abbrechenExam()">Abbrechen</button>' +
+    '</div></div>';
 
   h += '<article class="karte">';
   h += '<div class="qmeta"><span class="tag">' + esc(q.k) + '</span></div>';
@@ -682,6 +685,44 @@ window.toggleExamMc = function(idx) {
 window.setExamZo = function(j, val) { exam.items[exam.cur].a[j] = val; store.set('exam', exam); render(); };
 window.setExamLt = function(g, val) { exam.items[exam.cur].a[g] = val; store.set('exam', exam); render(); };
 
+window.abbrechenExam = function() {
+  if (!confirm("Möchtest du die Prüfung wirklich abbrechen?\n\nDu erhältst eine Auswertung deiner bisher beantworteten Fragen. Die Prüfung wird NICHT im Verlauf gespeichert.")) return;
+  if (timerId) clearInterval(timerId);
+
+  const beantwortete = exam.items.filter(it => angefangen(it));
+  let punkte = 0, maxPunkte = 0;
+  const details = [];
+
+  beantwortete.forEach(it => {
+    const q = BYID[it.id];
+    const w = wert(q);
+    const ant = anteil(q, it);
+    const erzielt = ant * w;
+    punkte += erzielt;
+    maxPunkte += w;
+    details.push({ id: q.id, ant: ant, erzielt: erzielt, max: w });
+  });
+
+  const pct = maxPunkte > 0 ? Math.round((punkte / maxPunkte) * 100) : 0;
+  const ergebnis = {
+    datum: new Date().toLocaleDateString('de-DE'),
+    zeit: new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
+    punkte: Math.round(punkte * 10) / 10,
+    max: maxPunkte,
+    pct: pct,
+    bestanden: false,
+    abgebrochen: true,
+    gesamtFragen: exam.items.length,
+    beantwortetCount: beantwortete.length,
+    details: details
+  };
+
+  exam = null;
+  store.del('exam');
+
+  renderErgebnis(ergebnis);
+};
+
 window.beendeExam = function(auto) {
   if (!auto && !confirm("Möchtest du deine Prüfung jetzt abgeben und auswerten?")) return;
   if (timerId) clearInterval(timerId);
@@ -734,19 +775,24 @@ window.beendeExam = function(auto) {
 
 function renderErgebnis(res) {
   const main = document.getElementById('main');
-  let h = '<section class="karte"><span class="eyebrow">Prüfungsergebnis</span>' +
+  const statusText = res.abgebrochen ? 'ABGEBROCHEN' : (res.bestanden ? 'BESTANDEN' : 'NICHT BESTANDEN');
+  const statusCls = res.abgebrochen ? 'bad' : (res.bestanden ? 'ok' : 'bad');
+  const subText = res.abgebrochen
+    ? res.beantwortetCount + ' von ' + res.gesamtFragen + ' Fragen beantwortet (' + res.punkte + ' / ' + res.max + ' Pkt. · nicht im Verlauf gespeichert)'
+    : res.punkte + ' von ' + res.max + ' Punkten erreicht';
+
+  let h = '<section class="karte"><span class="eyebrow">' + (res.abgebrochen ? 'Prüfungsabbruch' : 'Prüfungsergebnis') + '</span>' +
     '<div class="res"><div class="res-pct">' + res.pct + '<span> %</span></div>' +
-    '<div class="res-side"><span class="res-state ' + (res.bestanden ? 'ok' : 'bad') + '">' +
-    (res.bestanden ? 'BESTANDEN' : 'NICHT BESTANDEN') + '</span>' +
-    '<span class="res-meta">' + res.punkte + ' von ' + res.max + ' Punkten</span></div></div>' +
+    '<div class="res-side"><span class="res-state ' + statusCls + '">' + statusText + '</span>' +
+    '<span class="res-meta">' + subText + '</span></div></div>' +
     '<div class="row" style="margin-top:1rem;">' +
-    '<button class="btn primary" onclick="starteNeuePruefung()">Nochmal versuchen</button>' +
+    '<button class="btn primary" onclick="starteNeuePruefung()">Neue Prüfung</button>' +
     '<button class="btn" onclick="geh(\'start\')">Zur Übersicht</button>' +
     '</div></section>';
 
   const falsche = res.details.filter(d => d.ant < 1);
   if (falsche.length) {
-    h += '<section class="karte"><h3 class="titel small">Fehlerhafte Fragen (' + falsche.length + ')</h3><div class="stack">';
+    h += '<section class="karte"><h3 class="titel small">Auswertung der Fragen mit Fehlern (' + falsche.length + ')</h3><div class="stack">';
     falsche.forEach(f => {
       const q = BYID[f.id];
       h += '<article class="feedback bad"><span class="tag" style="align-self:flex-start;">' + esc(q.k) + '</span>' +
