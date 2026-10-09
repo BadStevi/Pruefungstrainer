@@ -140,7 +140,7 @@ p { margin: 0; }
 .qtext { font: 600 1.22rem/1.38 var(--f-body); overflow-wrap: anywhere; }
 
 .opts { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
-.opt { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .8rem; align-items: center; min-height: 56px;
+.opt { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .8rem; align-items: center; min-height: 56px;
   padding: .6rem .85rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; cursor: pointer; }
 .opt:hover { border-color: var(--sel-line); }
 .opt input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
@@ -149,10 +149,21 @@ p { margin: 0; }
 .opt .ot { font-size: 1.02rem; line-height: 1.38; overflow-wrap: anywhere; }
 .opts:not([disabled]) .opt:has(input:checked) { background: var(--sel); border-color: var(--sel-line); }
 .opts:not([disabled]) .opt:has(input:checked) .let { background: var(--sel-dot); border-color: var(--sel-dot); color: var(--on-sel-dot); }
+
+/* 4-Zustände-System */
+.opt .badge { font-size: .78rem; font-weight: 700; white-space: nowrap; padding: .25rem .6rem; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; }
 .opt.is-ok { background: var(--ok-soft) !important; border-color: var(--ok) !important; }
 .opt.is-ok .let { background: var(--ok) !important; border-color: var(--ok) !important; color: #fff !important; }
+.opt.is-ok .badge { color: var(--ok); background: rgba(45, 110, 71, .15); }
+
 .opt.is-bad { background: var(--bad-soft) !important; border-color: var(--bad) !important; }
 .opt.is-bad .let { background: var(--bad) !important; border-color: var(--bad) !important; color: #fff !important; }
+.opt.is-bad .badge { color: var(--bad); background: rgba(163, 78, 15, .15); }
+
+.opt.is-miss { background: var(--surface) !important; border: 2px dashed var(--ok) !important; }
+.opt.is-miss .let { border-color: var(--ok) !important; color: var(--ok) !important; background: transparent !important; }
+.opt.is-miss .badge { color: var(--ok); background: var(--ok-soft); border: 1px solid var(--ok); }
+.opt.is-muted { opacity: .45; }
 
 /* Lückentext & Zuordnung */
 .lt { font-size: 1.08rem; line-height: 2.55; }
@@ -173,6 +184,7 @@ select.zsel { width: 100%; min-height: 46px; font-size: 1rem; padding: .3rem .5r
 select.zsel.voll { font-weight: 600; background: var(--sel); border-color: var(--sel-line); }
 .zo-row.is-ok { border-color: var(--ok) !important; background: var(--ok-soft) !important; }
 .zo-row.is-bad { border-color: var(--bad) !important; background: var(--bad-soft) !important; }
+.zo-fix { grid-column: 1 / -1; font-size: .84rem; color: var(--ok); font-weight: 600; padding-top: .2rem; }
 
 .feedback { padding: .85rem 1rem; display: flex; flex-direction: column; gap: .35rem; border: 1px solid; border-radius: 14px; }
 .feedback.ok { background: var(--ok-soft); border-color: var(--ok); }
@@ -241,7 +253,7 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">Stand Oktober 2026 · created by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">created by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -274,7 +286,7 @@ const KURSE_DEF = {
   vf: {
     id: 'vf', dbName: 'Verbandsführer', name: 'Verbandsführer', prefix: 'vf5.',
     kopfUnter: 'Lehrgänge der Landesfeuerwehrschule Thüringen',
-    schema: { mc: { n: 30, p: 1 }, lt: { n: 6, p: 2 }, zo: { n: 3, p: 2 } },
+    schema: { mc: { n: 32, p: 1 }, lt: { n: 4, p: 2 }, zo: { n: 4, p: 2 } },
     dauer: 30, bestehenPct: 60,
     farben: {
       hell: { brand: '#8A5A00', 'brand-bg': '#8A5A00', 'head-bg': '#FFBF00', 'on-head': '#1d1d1f', 'brand-soft': '#FFF9E6', 'brand-fl': '#FFF3CF', 'brand-line': '#F2D58A', 'kw-bg': 'rgba(0, 0, 0, .09)', 'kw-hover': 'rgba(0, 0, 0, .07)' },
@@ -540,7 +552,7 @@ function renderStart(main) {
 function starteNeuePruefung() {
   const pool = shuffle(FR.slice());
   const gewaehlt = [];
-  const mcBedarf = (SCHEMA.mc && SCHEMA.mc.n) || 30;
+  const mcBedarf = (SCHEMA.mc && SCHEMA.mc.n) || 32;
   const zoBedarf = (SCHEMA.zo && SCHEMA.zo.n) || 0;
   const ltBedarf = (SCHEMA.lt && SCHEMA.lt.n) || 0;
 
@@ -585,7 +597,9 @@ function renderExam(main) {
       const checked = it.sel.includes(displayIdx) ? ' checked' : '';
       h += '<label class="opt"><input type="checkbox" onchange="toggleExamMc(' + displayIdx + ')"' + checked + '>' +
         '<span class="let">' + String.fromCharCode(65 + displayIdx) + '</span>' +
-        '<span class="ot">' + esc(opt.text) + '</span></label>';
+        '<span class="ot">' + esc(opt.text) + '</span>' +
+        '<span></span>' +
+        '</label>';
     });
     h += '</fieldset>';
   } else if (t === 'zo') {
@@ -791,15 +805,29 @@ function renderEinzelFrage(q, beantwortet, it) {
   if (t === 'mc') {
     h += '<fieldset class="opts"' + (beantwortet ? ' disabled' : '') + '>';
     it.p.forEach((opt, displayIdx) => {
-      const checked = it.sel.includes(displayIdx) ? ' checked' : '';
+      const isSelected = it.sel.includes(displayIdx);
+      const isCorrect = !!opt.correct;
       let cls = '';
+      let badgeHtml = '';
       if (beantwortet) {
-        if (opt.correct) cls = ' is-ok';
-        else if (it.sel.includes(displayIdx)) cls = ' is-bad';
+        if (isSelected && isCorrect) {
+          cls = ' is-ok';
+          badgeHtml = '<span class="badge">✔ Richtig gewählt</span>';
+        } else if (isSelected && !isCorrect) {
+          cls = ' is-bad';
+          badgeHtml = '<span class="badge">✖ Falsch gewählt</span>';
+        } else if (!isSelected && isCorrect) {
+          cls = ' is-miss';
+          badgeHtml = '<span class="badge">➕ Hat gefehlt</span>';
+        } else {
+          cls = ' is-muted';
+        }
       }
-      h += '<label class="opt' + cls + '"><input type="checkbox" onchange="toggleUebungMc(' + displayIdx + ')"' + checked + '>' +
+      h += '<label class="opt' + cls + '"><input type="checkbox" onchange="toggleUebungMc(' + displayIdx + ')"' + (isSelected ? ' checked' : '') + '>' +
         '<span class="let">' + String.fromCharCode(65 + displayIdx) + '</span>' +
-        '<span class="ot">' + esc(opt.text) + '</span></label>';
+        '<span class="ot">' + esc(opt.text) + '</span>' +
+        badgeHtml +
+        '</label>';
     });
     h += '</fieldset>';
   } else if (t === 'zo') {
@@ -809,9 +837,13 @@ function renderEinzelFrage(q, beantwortet, it) {
       const svgIcon = SVG_ICONS[linksKey];
       const linksHtml = svgIcon ? '<span class="zo-bild">' + svgIcon + '</span>' : '<span class="zo-text">' + esc(linksKey) + '</span>';
       let cls = '';
+      let fixHtml = '';
       if (beantwortet) {
         const ok = it.a[j] && it.a[j].trim().toLowerCase() === q.z[zi][1].trim().toLowerCase();
         cls = ok ? ' is-ok' : ' is-bad';
+        if (!ok) {
+          fixHtml = '<div class="zo-fix">Richtig: ' + esc(q.z[zi][1]) + '</div>';
+        }
       }
       h += '<div class="zo-row' + (!svgIcon ? ' zo-txt' : '') + cls + '">' + linksHtml +
         '<select class="zsel' + (it.a[j] ? ' voll' : '') + '"' + (beantwortet ? ' disabled' : '') + ' onchange="setUebungZo(' + j + ', this.value)">' +
@@ -819,7 +851,7 @@ function renderEinzelFrage(q, beantwortet, it) {
       it.c.forEach((cText) => {
         h += '<option value="' + esc(cText) + '"' + (it.a[j] === cText ? ' selected' : '') + '>' + esc(cText) + '</option>';
       });
-      h += '</select></div>';
+      h += '</select>' + fixHtml + '</div>';
     });
     h += '</div>';
   } else if (t === 'lt') {
@@ -839,13 +871,35 @@ function renderEinzelFrage(q, beantwortet, it) {
       text = text.replace('___', selHtml);
     });
     h += '<div class="lt">' + text + '</div>';
+    if (beantwortet) {
+      const fixes = [];
+      q.l.forEach((gap, g) => {
+        const isOk = it.a[g] && it.a[g].trim().toLowerCase() === gap.correct.trim().toLowerCase();
+        if (!isOk) {
+          fixes.push('<li><b>Lücke ' + (g + 1) + ':</b> richtig ist „' + esc(gap.correct) + '“</li>');
+        }
+      });
+      if (fixes.length) {
+        h += '<ul class="liste small muted" style="margin-top:.6rem;">' + fixes.join('') + '</ul>';
+      }
+    }
   }
 
   if (beantwortet) {
     const ant = anteil(q, it);
     const ok = ant === 1;
+    let verdictText = ok ? 'Richtig gelöst!' : 'Leider nicht ganz richtig!';
+    if (!ok && t === 'mc') {
+      const rCount = it.p.filter(o => o.correct).length;
+      const gewaehltRichtig = it.p.filter((o, i) => o.correct && it.sel.includes(i)).length;
+      const gewaehltFalsch = it.p.filter((o, i) => !o.correct && it.sel.includes(i)).length;
+      if (gewaehltRichtig > 0 && (gewaehltRichtig < rCount || gewaehltFalsch > 0)) {
+        verdictText = 'Teilweise richtig (' + gewaehltRichtig + ' von ' + rCount + ' richtigen Antworten gewählt)';
+      }
+    }
+
     h += '<div class="feedback ' + (ok ? 'ok' : 'bad') + '">' +
-      '<div class="verdict">' + (ok ? 'Richtig gelöst!' : 'Leider nicht ganz richtig!') + '</div>' +
+      '<div class="verdict">' + verdictText + '</div>' +
       (q.e ? '<p class="small">' + esc(q.e) + '</p>' : '') +
       (q.s ? '<p class="src">Quelle: ' + esc(q.s) + '</p>' : '') +
       '</div>';
