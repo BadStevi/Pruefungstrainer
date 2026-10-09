@@ -109,7 +109,6 @@ p { margin: 0; }
 .btn.leise { min-height: 40px; border-color: transparent; background: transparent; color: var(--muted); padding-inline: .3rem; text-decoration: underline; }
 .btn.grow { flex: 1 1 auto; }
 
-/* Filter Chips */
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chip { min-height: 42px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted);
   padding: .35rem .9rem .35rem .6rem; cursor: pointer; font-size: .93rem; display: inline-flex; gap: .5rem; align-items: center; text-align: left; }
@@ -128,7 +127,6 @@ p { margin: 0; }
 .facts b { font: 700 1.9rem/1 var(--f-display); }
 .facts span { font-size: .84rem; color: var(--muted); }
 
-/* Prüfung */
 .exam-bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; background: var(--bg); border-bottom: 1px solid var(--hair);
   display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: .55rem .6rem; }
 .eb { display: flex; flex-direction: column; gap: .15rem; }
@@ -161,8 +159,8 @@ p { margin: 0; }
 select.gap { font-size: 1rem; line-height: 1.25; min-height: 2.3rem; margin: .1rem .12rem; padding: .2rem .5rem;
   border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
 select.gap.voll { font-weight: 600; background: var(--sel); border-color: var(--sel-line); }
-select.gap.is-ok { background: var(--ok-soft); border-color: var(--ok); }
-select.gap.is-bad { background: var(--bad-soft); border-color: var(--bad); }
+select.gap.is-ok { background: var(--ok-soft) !important; border-color: var(--ok) !important; color: var(--ok) !important; font-weight: 700; }
+select.gap.is-bad { background: var(--bad-soft) !important; border-color: var(--bad) !important; color: var(--bad) !important; }
 
 .zo { display: flex; flex-direction: column; gap: .5rem; }
 .zo-row { display: grid; grid-template-columns: 7.6rem minmax(0, 1fr); gap: .4rem .8rem; align-items: center; padding: .55rem .65rem;
@@ -173,8 +171,8 @@ select.gap.is-bad { background: var(--bad-soft); border-color: var(--bad); }
 .zo-row.zo-txt { grid-template-columns: 11rem minmax(0, 1fr); }
 select.zsel { width: 100%; min-height: 46px; font-size: 1rem; padding: .3rem .5rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
 select.zsel.voll { font-weight: 600; background: var(--sel); border-color: var(--sel-line); }
-.zo-row.is-ok { border-color: var(--ok); background: var(--ok-soft); }
-.zo-row.is-bad { border-color: var(--bad); background: var(--bad-soft); }
+.zo-row.is-ok { border-color: var(--ok) !important; background: var(--ok-soft) !important; }
+.zo-row.is-bad { border-color: var(--bad) !important; background: var(--bad-soft) !important; }
 
 .feedback { padding: .85rem 1rem; display: flex; flex-direction: column; gap: .35rem; border: 1px solid; border-radius: 14px; }
 .feedback.ok { background: var(--ok-soft); border-color: var(--ok); }
@@ -183,7 +181,6 @@ select.zsel.voll { font-weight: 600; background: var(--sel); border-color: var(-
 .feedback.ok .verdict { color: var(--ok); }
 .feedback.bad .verdict { color: var(--bad); }
 
-/* Planquadrat-Übersicht */
 .pq-row { display: grid; grid-template-columns: 18px repeat(8, minmax(0, 1fr)); gap: 4px; }
 .pq-n { text-align: center; font-size: .7rem; font-weight: 600; color: var(--muted); display: flex; align-items: center; justify-content: center; }
 .pq-grid { display: flex; flex-direction: column; gap: 4px; }
@@ -192,7 +189,6 @@ select.zsel.voll { font-weight: 600; background: var(--sel); border-color: var(-
 .pq-row button.cur { border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); color: var(--ink); font-weight: 700; }
 .pq-row button.flag::after { content: ""; position: absolute; top: 4px; right: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
 
-/* Ergebnis & Auswertung */
 .res { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .8rem 1rem; }
 .res-pct { font: 700 clamp(3.8rem, 18vw, 5.6rem)/.9 var(--f-display); letter-spacing: -.02em; }
 .res-pct span { font-size: .36em; color: var(--muted); }
@@ -245,17 +241,15 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot">Stand Oktober 2026 · created by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Stand Oktober 2026 · created by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// Supabase-Client Initialisierung
 const SUPABASE_URL = 'https://murdhqrttralnzzoorlv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11cmRocXJ0dHJhbG56em9vcmx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0ODE5MzMsImV4cCI6MjEwNzA1NzkzM30.D2utm2BhyBdPdhjIocz_RuR3I3hGqdAlZktpq7OUNJo';
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Lehrgangs-Konfigurationen
 const KURSE_DEF = {
   tm: {
     id: 'tm', dbName: 'Truppmann', name: 'Truppmann Teil 1', prefix: 'tm1.',
@@ -289,7 +283,6 @@ const KURSE_DEF = {
   }
 };
 
-// Generierung von Dienstgrad-Abzeichen (SVG)
 function makeDgSvg(sterne, farbe) {
   const xs = sterne === 1 ? [60] : (sterne === 2 ? [40, 80] : [26, 60, 94]);
   const p = xs.map(x => `<polygon points="${x},10 ${x+4},16 ${x+10},16 ${x+5},20 ${x+7},26 ${x},22 ${x-7},26 ${x-5},20 ${x-10},16 ${x-4},16" fill="${farbe}"/>`).join('');
@@ -310,7 +303,6 @@ var stats, hist, tage, exam, filt;
 var KURS, PREFIX, SCHEMA, BESTEHEN_PCT, DAUER, BYID = {}, FR = [];
 var timerId = null;
 
-// Kurswechsler
 window.wechsleKurs = function(id) {
   if (id === AKTUELLER_KURS_ID) return;
   AKTUELLER_KURS_ID = id;
@@ -356,42 +348,45 @@ async function ladeKursUndStarte() {
   DATA.fragen = rows.map(r => {
     const katName = r.Kategorie || 'Allgemein';
     DATA.kat[katName] = katName;
+    const fTyp = String(r.Fragetyp || 'MC').trim().toUpperCase();
     const q = { id: String(r.ID || r.id), k: katName, q: r.Fragetext || '', e: r.Erklärung || '', s: r.Quelle || '' };
 
-    if (r.Fragetyp === 'MC' || !r.Fragetyp) {
-      const loesung = String(r['Korrekte Lösung'] || '');
+    if (fTyp === 'MC') {
+      const loesung = String(r['Korrekte Lösung'] || '').toLowerCase();
       const opts = [];
       for (let i = 1; i <= 5; i++) {
         const val = r['Antwort ' + i];
         if (val && String(val).trim()) {
           const t = String(val).trim();
-          opts.push(loesung.includes('Antwort ' + i) ? '+' + t : t);
+          opts.push({ text: t, correct: loesung.includes('antwort ' + i) });
         }
       }
       q.o = opts;
-    } else if (r.Fragetyp === 'ZO') {
+    } else if (fTyp === 'ZO') {
       q.t = 'ZO'; q.z = [];
       for (let i = 1; i <= 5; i++) {
         const val = r['Antwort ' + i];
         if (val && String(val).includes('->')) {
-          q.z.push(val.split('->').map(s => s.trim()));
+          q.z.push(String(val).split('->').map(s => s.trim()));
         }
       }
       if (q.q.startsWith('[Zuordnung] ')) q.q = q.q.replace('[Zuordnung] ', '');
-    } else if (r.Fragetyp === 'LT') {
+    } else if (fTyp === 'LT') {
       q.t = 'LT'; q.l = [];
       const corrStr = String(r['Korrekte Lösung'] || '');
       const corrMap = {};
-      corrStr.split(',').forEach(p => { if (p.includes(':')) { const [k, v] = p.split(':'); corrMap[k.trim()] = v.trim(); } });
+      corrStr.split(',').forEach(p => {
+        if (p.includes(':')) {
+          const [k, v] = p.split(':');
+          corrMap[k.trim().toLowerCase()] = v.trim();
+        }
+      });
       for (let i = 1; i <= 5; i++) {
         const val = r['Antwort ' + i];
         if (val && String(val).includes('Optionen:')) {
-          const opts = val.split('Optionen:')[1].split(',').map(s => s.trim());
-          const cVal = corrMap['Lücke ' + i] || opts[0];
-          const idx = opts.indexOf(cVal);
-          if (idx > -1) opts.splice(idx, 1);
-          opts.unshift(cVal);
-          q.l.push(opts);
+          const rawOpts = String(val).split('Optionen:')[1].split(',').map(s => s.trim()).filter(Boolean);
+          const correctVal = corrMap['lücke ' + i] || rawOpts[0];
+          q.l.push({ options: rawOpts, correct: correctVal });
         }
       }
       if (q.q.startsWith('[Lückentext] ')) q.q = q.q.replace('[Lückentext] ', '');
@@ -411,7 +406,6 @@ async function ladeKursUndStarte() {
   starte();
 }
 
-// Lokaler Speicher (Browser localStorage)
 const store = {
   get: (k, def) => {
     try { const v = localStorage.getItem(PREFIX + k); return v ? JSON.parse(v) : def; } catch (e) { return def; }
@@ -443,39 +437,47 @@ function reihe(n) { return Array.from({ length: n }, (_, i) => i); }
 
 function typ(q) { return q.t === 'LT' ? 'lt' : (q.t === 'ZO' ? 'zo' : 'mc'); }
 function wert(q) { return (SCHEMA[typ(q)] || { p: 1 }).p; }
-function richtigeIdx(q) { const r = []; (q.o || []).forEach((x, i) => { if (x.charAt(0) === '+') r.push(i); }); return r; }
 
 function neuesItem(q) {
   const t = typ(q);
-  if (t === 'mc') return { id: q.id, p: shuffle(reihe(q.o.length)), sel: [], m: 0 };
-  if (t === 'lt') return { id: q.id, o: q.l.map(L => shuffle(reihe(L.length))), a: q.l.map(() => -1), m: 0 };
+  if (t === 'mc') return { id: q.id, p: shuffle(q.o.slice()), sel: [], m: 0 };
+  if (t === 'lt') return { id: q.id, o: q.l.map(gap => shuffle(gap.options.slice())), a: q.l.map(() => ''), m: 0 };
   const zeilen = shuffle(reihe(q.z.length));
   const wahl = []; q.z.forEach(z => { if (!wahl.includes(z[1])) wahl.push(z[1]); });
-  return { id: q.id, r: zeilen, c: shuffle(wahl), a: zeilen.map(() => -1), m: 0 };
+  return { id: q.id, r: zeilen, c: shuffle(wahl), a: zeilen.map(() => ''), m: 0 };
 }
 
-function zeileOk(q, it, j) { return it.a[j] >= 0 && it.c[it.a[j]] === q.z[it.r[j]][1]; }
-function mcRichtig(q, it) {
-  const r = richtigeIdx(q);
-  if (it.sel.length !== r.length) return false;
-  return it.sel.every(idx => r.includes(it.p[idx]));
+function mcRichtig(it) {
+  return it.p.every((opt, i) => opt.correct ? it.sel.includes(i) : !it.sel.includes(i));
 }
 
 function teile(q, it) {
-  const t = typ(q); let n = 0;
-  if (t === 'mc') return [mcRichtig(q, it) ? 1 : 0, 1];
-  if (t === 'lt') { q.l.forEach((_, g) => { if (it.a[g] === 0) n++; }); return [n, q.l.length]; }
-  it.r.forEach((_, j) => { if (zeileOk(q, it, j)) n++; });
-  return [n, it.r.length];
+  const t = typ(q);
+  if (t === 'mc') return [mcRichtig(it) ? 1 : 0, 1];
+  if (t === 'lt') {
+    let n = 0;
+    q.l.forEach((gap, g) => {
+      if (it.a[g] && it.a[g].trim().toLowerCase() === gap.correct.trim().toLowerCase()) n++;
+    });
+    return [n, q.l.length];
+  }
+  if (t === 'zo') {
+    let n = 0;
+    it.r.forEach((zi, j) => {
+      if (it.a[j] && it.a[j].trim().toLowerCase() === q.z[zi][1].trim().toLowerCase()) n++;
+    });
+    return [n, it.r.length];
+  }
+  return [0, 1];
 }
 
-function anteil(q, it) { const t = teile(q, it); return t[1] ? t[0] / t[1] : 0; }
+function anteil(q, it) { const t = teile(q, it); return t[1] > 0 ? t[0] / t[1] : 0; }
 function angefangen(it) {
   if (!it) return false;
   const q = BYID[it.id]; if (!q) return false;
   const t = typ(q);
   if (t === 'mc') return it.sel.length > 0;
-  return it.a.some(v => v >= 0);
+  return it.a.some(v => v && v !== '');
 }
 
 let ANSICHT = 'start';
@@ -506,7 +508,6 @@ function render() {
   else renderStart(main);
 }
 
-// Ansicht: Start
 function renderStart(main) {
   let h = '';
   if (exam) {
@@ -522,8 +523,8 @@ function renderStart(main) {
   h += '<section class="karte"><span class="eyebrow">' + KURSE_DEF[KURS].name + '</span>' +
     '<h2 class="titel">Prüfung</h2>' +
     '<p>Simuliere den echten Leistungsnachweis mit Zeitbegrenzung (' + DAUER + ' Min.) und Zufallsfragen.</p>' +
-    '<ul class="facts"><li><b>' + (SCHEMA.mc ? SCHEMA.mc.n : 0) + '</b><span>MC-Fragen</span></li>' +
-    '<li><b>' + ((SCHEMA.zo ? SCHEMA.zo.n : 0) + (SCHEMA.lt ? SCHEMA.lt.n : 0)) + '</b><span>Aufgaben (ZO/LT)</span></li>' +
+    '<ul class="facts"><li><b>' + (SCHEMA.mc ? SCHEMA.mc.n : 0) + '</b><span>Multiple-Choice</span></li>' +
+    '<li><b>' + ((SCHEMA.zo ? SCHEMA.zo.n : 0) + (SCHEMA.lt ? SCHEMA.lt.n : 0)) + '</b><span>Zuordnung / Lückentext</span></li>' +
     '<li><b>' + DAUER + ' Min</b><span>Zeitlimit</span></li>' +
     '<li><b>' + BESTEHEN_PCT + ' %</b><span>Bestehensgrenze</span></li></ul>' +
     '<button class="btn primary grow" onclick="starteNeuePruefung()">Prüfung starten</button></section>';
@@ -559,12 +560,12 @@ window.brichExamAb = function() {
   }
 };
 
-// Ansicht: Prüfung
 function renderExam(main) {
   if (!exam || !exam.items.length) { geh('start'); return; }
   const curIdx = exam.cur;
   const it = exam.items[curIdx];
   const q = BYID[it.id];
+  const t = typ(q);
 
   let restSek = Math.max(0, Math.floor((exam.dl - Date.now()) / 1000));
   if (restSek <= 0) { beendeExam(true); return; }
@@ -576,17 +577,15 @@ function renderExam(main) {
 
   h += '<article class="karte">';
   h += '<div class="qmeta"><span class="tag">' + esc(q.k) + '</span></div>';
-  h += '<p class="qtext">' + esc(q.q) + '</p>';
+  if (t !== 'lt') h += '<p class="qtext">' + esc(q.q) + '</p>';
 
-  const t = typ(q);
   if (t === 'mc') {
     h += '<fieldset class="opts">';
-    it.p.forEach((optIdx, displayIdx) => {
-      const optText = q.o[optIdx].replace(/^\+/, '');
+    it.p.forEach((opt, displayIdx) => {
       const checked = it.sel.includes(displayIdx) ? ' checked' : '';
-      h += '<label class="opt"><input type="checkbox" onchange="toggleMc(' + displayIdx + ')"' + checked + '>' +
+      h += '<label class="opt"><input type="checkbox" onchange="toggleExamMc(' + displayIdx + ')"' + checked + '>' +
         '<span class="let">' + String.fromCharCode(65 + displayIdx) + '</span>' +
-        '<span class="ot">' + esc(optText) + '</span></label>';
+        '<span class="ot">' + esc(opt.text) + '</span></label>';
     });
     h += '</fieldset>';
   } else if (t === 'zo') {
@@ -596,21 +595,21 @@ function renderExam(main) {
       const svgIcon = SVG_ICONS[linksKey];
       const linksHtml = svgIcon ? '<span class="zo-bild">' + svgIcon + '</span>' : '<span class="zo-text">' + esc(linksKey) + '</span>';
       h += '<div class="zo-row' + (!svgIcon ? ' zo-txt' : '') + '">' + linksHtml +
-        '<select class="zsel' + (it.a[j] >= 0 ? ' voll' : '') + '" onchange="setZo(' + j + ', this.value)">' +
-        '<option value="-1">-- Bitte wählen --</option>';
-      it.c.forEach((cText, ci) => {
-        h += '<option value="' + ci + '"' + (it.a[j] === ci ? ' selected' : '') + '>' + esc(cText) + '</option>';
+        '<select class="zsel' + (it.a[j] ? ' voll' : '') + '" onchange="setExamZo(' + j + ', this.value)">' +
+        '<option value="">-- Bitte wählen --</option>';
+      it.c.forEach((cText) => {
+        h += '<option value="' + esc(cText) + '"' + (it.a[j] === cText ? ' selected' : '') + '>' + esc(cText) + '</option>';
       });
       h += '</select></div>';
     });
     h += '</div>';
   } else if (t === 'lt') {
     let text = esc(q.q);
-    q.l.forEach((L, g) => {
-      let selHtml = '<select class="gap' + (it.a[g] >= 0 ? ' voll' : '') + '" onchange="setLt(' + g + ', this.value)">' +
-        '<option value="-1">-- Lücke ' + (g + 1) + ' --</option>';
-      it.o[g].forEach((optIdx, oi) => {
-        selHtml += '<option value="' + oi + '"' + (it.a[g] === oi ? ' selected' : '') + '>' + esc(L[optIdx]) + '</option>';
+    q.l.forEach((gap, g) => {
+      let selHtml = '<select class="gap' + (it.a[g] ? ' voll' : '') + '" onchange="setExamLt(' + g + ', this.value)">' +
+        '<option value="">-- Lücke ' + (g + 1) + ' --</option>';
+      it.o[g].forEach((optText) => {
+        selHtml += '<option value="' + esc(optText) + '"' + (it.a[g] === optText ? ' selected' : '') + '>' + esc(optText) + '</option>';
       });
       selHtml += '</select>';
       text = text.replace('___', selHtml);
@@ -660,14 +659,14 @@ function renderExam(main) {
 
 window.gehExamFrage = function(idx) { exam.cur = idx; store.set('exam', exam); render(); };
 window.flagFrage = function() { exam.items[exam.cur].m = exam.items[exam.cur].m ? 0 : 1; store.set('exam', exam); render(); };
-window.toggleMc = function(optIdx) {
+window.toggleExamMc = function(idx) {
   const it = exam.items[exam.cur];
-  const pos = it.sel.indexOf(optIdx);
-  if (pos >= 0) it.sel.splice(pos, 1); else it.sel.push(optIdx);
+  const pos = it.sel.indexOf(idx);
+  if (pos >= 0) it.sel.splice(pos, 1); else it.sel.push(idx);
   store.set('exam', exam); render();
 };
-window.setZo = function(j, val) { exam.items[exam.cur].a[j] = parseInt(val, 10); store.set('exam', exam); render(); };
-window.setLt = function(g, val) { exam.items[exam.cur].a[g] = parseInt(val, 10); store.set('exam', exam); render(); };
+window.setExamZo = function(j, val) { exam.items[exam.cur].a[j] = val; store.set('exam', exam); render(); };
+window.setExamLt = function(g, val) { exam.items[exam.cur].a[g] = val; store.set('exam', exam); render(); };
 
 window.beendeExam = function(auto) {
   if (!auto && !confirm("Möchtest du deine Prüfung jetzt abgeben und auswerten?")) return;
@@ -690,7 +689,7 @@ window.beendeExam = function(auto) {
     if (ant === 1) stats[q.id].r++;
   });
 
-  const pct = Math.round((punkte / maxPunkte) * 100);
+  const pct = maxPunkte > 0 ? Math.round((punkte / maxPunkte) * 100) : 0;
   const bestanden = pct >= BESTEHEN_PCT;
 
   const ergebnis = {
@@ -747,7 +746,6 @@ function renderErgebnis(res) {
   main.innerHTML = h;
 }
 
-// Ansicht: Üben
 function renderPractice(main) {
   let h = '<section class="karte"><h2 class="titel">Themenfelder filtern</h2>' +
     '<p>Wähle aus, welche Themengebiete du gezielt üben möchtest.</p>' +
@@ -787,23 +785,21 @@ function renderEinzelFrage(q, beantwortet, it) {
   const t = typ(q);
 
   let h = '<article class="karte">' +
-    '<div class="qmeta"><span class="tag">' + esc(q.k) + '</span></div>' +
-    '<p class="qtext">' + esc(q.q) + '</p>';
+    '<div class="qmeta"><span class="tag">' + esc(q.k) + '</span></div>';
+  if (t !== 'lt') h += '<p class="qtext">' + esc(q.q) + '</p>';
 
   if (t === 'mc') {
     h += '<fieldset class="opts"' + (beantwortet ? ' disabled' : '') + '>';
-    const rIndices = richtigeIdx(q);
-    it.p.forEach((optIdx, displayIdx) => {
-      const optText = q.o[optIdx].replace(/^\+/, '');
+    it.p.forEach((opt, displayIdx) => {
       const checked = it.sel.includes(displayIdx) ? ' checked' : '';
       let cls = '';
       if (beantwortet) {
-        if (rIndices.includes(optIdx)) cls = ' is-ok';
+        if (opt.correct) cls = ' is-ok';
         else if (it.sel.includes(displayIdx)) cls = ' is-bad';
       }
       h += '<label class="opt' + cls + '"><input type="checkbox" onchange="toggleUebungMc(' + displayIdx + ')"' + checked + '>' +
         '<span class="let">' + String.fromCharCode(65 + displayIdx) + '</span>' +
-        '<span class="ot">' + esc(optText) + '</span></label>';
+        '<span class="ot">' + esc(opt.text) + '</span></label>';
     });
     h += '</fieldset>';
   } else if (t === 'zo') {
@@ -813,25 +809,31 @@ function renderEinzelFrage(q, beantwortet, it) {
       const svgIcon = SVG_ICONS[linksKey];
       const linksHtml = svgIcon ? '<span class="zo-bild">' + svgIcon + '</span>' : '<span class="zo-text">' + esc(linksKey) + '</span>';
       let cls = '';
-      if (beantwortet) cls = zeileOk(q, it, j) ? ' is-ok' : ' is-bad';
+      if (beantwortet) {
+        const ok = it.a[j] && it.a[j].trim().toLowerCase() === q.z[zi][1].trim().toLowerCase();
+        cls = ok ? ' is-ok' : ' is-bad';
+      }
       h += '<div class="zo-row' + (!svgIcon ? ' zo-txt' : '') + cls + '">' + linksHtml +
-        '<select class="zsel' + (it.a[j] >= 0 ? ' voll' : '') + '"' + (beantwortet ? ' disabled' : '') + ' onchange="setUebungZo(' + j + ', this.value)">' +
-        '<option value="-1">-- Bitte wählen --</option>';
-      it.c.forEach((cText, ci) => {
-        h += '<option value="' + ci + '"' + (it.a[j] === ci ? ' selected' : '') + '>' + esc(cText) + '</option>';
+        '<select class="zsel' + (it.a[j] ? ' voll' : '') + '"' + (beantwortet ? ' disabled' : '') + ' onchange="setUebungZo(' + j + ', this.value)">' +
+        '<option value="">-- Bitte wählen --</option>';
+      it.c.forEach((cText) => {
+        h += '<option value="' + esc(cText) + '"' + (it.a[j] === cText ? ' selected' : '') + '>' + esc(cText) + '</option>';
       });
       h += '</select></div>';
     });
     h += '</div>';
   } else if (t === 'lt') {
     let text = esc(q.q);
-    q.l.forEach((L, g) => {
+    q.l.forEach((gap, g) => {
       let cls = '';
-      if (beantwortet) cls = it.a[g] === 0 ? ' is-ok' : ' is-bad';
-      let selHtml = '<select class="gap' + (it.a[g] >= 0 ? ' voll' : '') + cls + '"' + (beantwortet ? ' disabled' : '') + ' onchange="setUebungLt(' + g + ', this.value)">' +
-        '<option value="-1">-- Lücke ' + (g + 1) + ' --</option>';
-      it.o[g].forEach((optIdx, oi) => {
-        selHtml += '<option value="' + oi + '"' + (it.a[g] === oi ? ' selected' : '') + '>' + esc(L[optIdx]) + '</option>';
+      if (beantwortet) {
+        const isOk = it.a[g] && it.a[g].trim().toLowerCase() === gap.correct.trim().toLowerCase();
+        cls = isOk ? ' is-ok' : ' is-bad';
+      }
+      let selHtml = '<select class="gap' + (it.a[g] ? ' voll' : '') + cls + '"' + (beantwortet ? ' disabled' : '') + ' onchange="setUebungLt(' + g + ', this.value)">' +
+        '<option value="">-- Lücke ' + (g + 1) + ' --</option>';
+      it.o[g].forEach((optText) => {
+        selHtml += '<option value="' + esc(optText) + '"' + (it.a[g] === optText ? ' selected' : '') + '>' + esc(optText) + '</option>';
       });
       selHtml += '</select>';
       text = text.replace('___', selHtml);
@@ -866,11 +868,10 @@ window.toggleUebungMc = function(idx) {
   const pos = it.sel.indexOf(idx);
   if (pos >= 0) it.sel.splice(pos, 1); else it.sel.push(idx);
 };
-window.setUebungZo = function(j, val) { window._curUebung.it.a[j] = parseInt(val, 10); };
-window.setUebungLt = function(g, val) { window._curUebung.it.a[g] = parseInt(val, 10); };
+window.setUebungZo = function(j, val) { window._curUebung.it.a[j] = val; };
+window.setUebungLt = function(g, val) { window._curUebung.it.a[g] = val; };
 window.pruefeUebungFrage = function() { renderEinzelFrage(window._curUebung.q, true, window._curUebung.it); };
 
-// Ansicht: Verlauf
 function renderHistory(main) {
   let h = '<section class="karte"><h2 class="titel">Prüfungsverlauf</h2>';
   if (!hist.length) {
@@ -907,7 +908,6 @@ function renderHistory(main) {
   main.innerHTML = h;
 }
 
-// Start
 window.addEventListener('DOMContentLoaded', () => {
   ladeKursUndStarte();
 });
