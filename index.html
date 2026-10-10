@@ -1,58 +1,100 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Prüfungstrainer</title>
 <style>
-:root {
-  --bg: #FFFFFF;
+:root, :root[data-theme="light"] {
+  --bg: #e8f0fe;
   --surface: #FFFFFF;
-  --surface-2: #FFF8F8;
-  --ink: #1F1C1B;
-  --muted: #5C5554;
-  --line: #C62828;
-  --hair: #E57373;
-  --brand: #C62828;
-  --brand-bg: #C62828;
+  --surface-2: #F4F7FC;
+  --ink: #1F2430;
+  --muted: #566175;
+  --line: #ff6372;
+  --hair: #ffa8b1;
+  --brand: #ff6372;
+  --brand-bg: #ff6372;
   --head-bg: #FFFFFF;
-  --on-head: #1F1C1B;
-  --kw-bg: #FFEBEE;
-  --kw-hover: #FFCDD2;
-  --brand-soft: #FFEBEE;
-  --brand-fl: #FFCDD2;
-  --brand-line: #C62828;
+  --on-head: #1F2430;
+  --kw-bg: #FFEBEF;
+  --kw-hover: #FFD6DC;
+  --brand-soft: #FFF0F2;
+  --brand-fl: #FFE0E4;
+  --brand-line: #ff6372;
   --on-brand: #FFFFFF;
-  --kurs-bg: #C62828;
+  --kurs-bg: #ff6372;
   --kurs-ink: #FFFFFF;
   --paper: #FFFFFF;
-  --sel: #FFEBEE;
-  --sel-line: #C62828;
-  --sel-dot: #C62828;
+  --sel: #FFEBEF;
+  --sel-line: #ff6372;
+  --sel-dot: #ff6372;
   --on-sel-dot: #FFFFFF;
-  --seg: #FFEBEE;
-  --tab-on: #C62828;
+  --seg: #FFEBEF;
+  --tab-on: #ff6372;
   --ok: #2D6E47;
   --ok-soft: #E4F1E8;
-  --bad: #C62828;
-  --bad-soft: #FFEBEE;
+  --bad: #ff6372;
+  --bad-soft: #FFEBEF;
   --warn: #B26F12;
   --part: #FFF3E0;
   --answered: #FFCDD2;
   --weak: #E39A50;
   --mark-ok: #2FA866;
-  --mark-bad: #C62828;
-  --focus: #C62828;
-  --shadow: 0 2px 4px rgba(198, 40, 40, .08), 0 4px 12px rgba(0, 0, 0, .04);
+  --mark-bad: #ff6372;
+  --focus: #ff6372;
+  --shadow: 0 2px 4px rgba(255, 99, 114, .08), 0 4px 14px rgba(15, 29, 58, .05);
   --f-body: Aptos, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --f-display: "Aptos Display", Aptos, "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --r-karte: 18px;
   --r-feld: 12px;
 }
 
+:root[data-theme="dark"] {
+  --bg: #0f1d3a;
+  --surface: #16264c;
+  --surface-2: #1c305e;
+  --ink: #EAF0FC;
+  --muted: #9AAECF;
+  --line: #ff6372;
+  --hair: #853640;
+  --brand: #ff6372;
+  --brand-bg: #ff6372;
+  --head-bg: #16264c;
+  --on-head: #EAF0FC;
+  --kw-bg: #223768;
+  --kw-hover: #2a437d;
+  --brand-soft: rgba(255, 99, 114, 0.16);
+  --brand-fl: rgba(255, 99, 114, 0.28);
+  --brand-line: #ff6372;
+  --on-brand: #FFFFFF;
+  --kurs-bg: #ff6372;
+  --kurs-ink: #FFFFFF;
+  --paper: #1c305e;
+  --sel: rgba(255, 99, 114, 0.24);
+  --sel-line: #ff6372;
+  --sel-dot: #ff6372;
+  --on-sel-dot: #FFFFFF;
+  --seg: #223768;
+  --tab-on: #ff6372;
+  --ok: #52B77A;
+  --ok-soft: #143B25;
+  --bad: #ff6372;
+  --bad-soft: rgba(255, 99, 114, 0.2);
+  --warn: #E5A84B;
+  --part: #4A3B22;
+  --answered: #422a39;
+  --weak: #E39A50;
+  --mark-ok: #52B77A;
+  --mark-bad: #ff6372;
+  --focus: #ff6372;
+  --shadow: 0 2px 4px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.5 var(--f-body); }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.5 var(--f-body); transition: background .2s ease, color .2s ease; }
 button, select, input { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
@@ -64,15 +106,67 @@ button, select, input { font: inherit; color: inherit; }
   border: 2px solid var(--line);
   border-radius: 20px;
   overflow: hidden;
-  padding: 1.3rem 1.4rem 1.55rem;
+  padding: 1.25rem 1.4rem 1.45rem;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: .25rem;
+  gap: .4rem;
+}
+.kopf-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 .kopf-t { font: 800 clamp(1.9rem, 6.6vw, 2.55rem)/1.04 var(--f-display); letter-spacing: -.012em; margin: 0; color: var(--brand); }
 .kopf-s { margin: 0; font-size: 1rem; color: var(--muted); }
-.kurs { margin-top: .85rem; display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; }
+
+/* Theme Schieberegler */
+.theme-switch-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--kw-bg);
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+}
+.theme-label { font-size: .85rem; user-select: none; }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--muted);
+  transition: .25s ease;
+  border-radius: 999px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: .25s ease;
+  border-radius: 50%;
+}
+.switch input:checked + .slider {
+  background-color: var(--brand);
+}
+.switch input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.kurs { margin-top: .6rem; display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; }
 .kurs-l { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--brand); }
 .kurswahl { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: var(--kw-bg); border: 1.5px solid var(--line); }
 .kw { display: inline-flex; align-items: center; min-height: 36px; padding: .3rem .95rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
@@ -116,7 +210,7 @@ p { margin: 0; }
 .btn:hover { background: var(--surface-2); }
 .btn.primary { background: var(--brand-bg); border-color: var(--brand-bg); color: #fff; }
 .btn.primary:hover { filter: brightness(1.1); }
-.btn.danger { color: var(--bad); border-color: var(--bad); background: #fff; }
+.btn.danger { color: var(--bad); border-color: var(--bad); background: var(--surface); }
 .btn.danger:hover { background: var(--bad-soft); }
 .btn.warn { background: var(--part); border-color: var(--warn); color: var(--ink); }
 .btn.leise { min-height: 40px; border-color: transparent; background: transparent; color: var(--brand); padding-inline: .3rem; text-decoration: underline; }
@@ -172,7 +266,7 @@ p { margin: 0; }
 
 .opt.is-bad { background: var(--bad-soft) !important; border-color: var(--bad) !important; }
 .opt.is-bad .let { background: var(--bad) !important; border-color: var(--bad) !important; color: #fff !important; }
-.opt.is-bad .badge { color: var(--bad); background: rgba(198, 40, 40, .15); }
+.opt.is-bad .badge { color: var(--bad); background: rgba(255, 99, 114, .18); }
 
 .opt.is-miss { background: var(--surface) !important; border: 2px dashed var(--ok) !important; }
 .opt.is-miss .let { border-color: var(--ok) !important; color: var(--ok) !important; background: transparent !important; }
@@ -289,8 +383,20 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
 <body>
 <div class="app" lang="de">
   <header class="kopf" id="kopf">
-    <h1 class="kopf-t" id="kopf-t">Prüfungstrainer</h1>
-    <p class="kopf-s" id="kopf-s">Lade Lehrgang …</p>
+    <div class="kopf-top-row">
+      <div>
+        <h1 class="kopf-t" id="kopf-t">Prüfungstrainer</h1>
+        <p class="kopf-s" id="kopf-s">Lade Lehrgang …</p>
+      </div>
+      <div class="theme-switch-wrap">
+        <span class="theme-label">☀️</span>
+        <label class="switch" title="Hell / Dunkel umschalten">
+          <input type="checkbox" id="theme-toggle" onchange="toggleTheme(this.checked)">
+          <span class="slider"></span>
+        </label>
+        <span class="theme-label">🌙</span>
+      </div>
+    </div>
     <div class="kurs">
       <span class="kurs-l" id="kurs-l">Kurs</span>
       <nav class="kurswahl" id="kurs" aria-labelledby="kurs-l"></nav>
@@ -304,7 +410,7 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">Keine amtliche Prüfungshilfe · Stand Oktober 2026 | v0.52 · powered by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Keine amtliche Prüfungshilfe · Stand Oktober 2026 · powered by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -312,6 +418,21 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
 const SUPABASE_URL = 'https://murdhqrttralnzzoorlv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11cmRocXJ0dHJhbG56em9vcmx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0ODE5MzMsImV4cCI6MjEwNzA1NzkzM30.D2utm2BhyBdPdhjIocz_RuR3I3hGqdAlZktpq7OUNJo';
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* Theme Umschaltung & Persistenz */
+function initTheme() {
+  const saved = localStorage.getItem('trainer_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  setTheme(saved);
+}
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  localStorage.setItem('trainer_theme', mode);
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) toggle.checked = (mode === 'dark');
+}
+window.toggleTheme = function(isDark) {
+  setTheme(isDark ? 'dark' : 'light');
+};
 
 const KURSE_DEF = {
   tm: {
@@ -1401,6 +1522,7 @@ window.zeigeHistorieErgebnis = function(idx) {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   ladeKursUndStarte();
 });
 </script>
