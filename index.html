@@ -11,39 +11,39 @@
   --surface-2: #F5F7FC;
   --ink: #1F2430;
   --muted: #566175;
-  --line: #FD5E53;
-  --hair: #FFA59E;
-  --brand: #FD5E53;
-  --brand-bg: #FD5E53;
+  --line: #A02128;
+  --hair: #D97E83;
+  --brand: #A02128;
+  --brand-bg: #A02128;
   --head-bg: #FFFFFF;
   --on-head: #1F2430;
-  --kw-bg: #FFF0EF;
-  --kw-hover: #FFE2E0;
-  --brand-soft: #FFF4F3;
-  --brand-fl: #FFE5E3;
-  --brand-line: #FD5E53;
+  --kw-bg: #FBECEE;
+  --kw-hover: #F6D6D9;
+  --brand-soft: #FDF2F3;
+  --brand-fl: #F5D5D7;
+  --brand-line: #A02128;
   --on-brand: #FFFFFF;
-  --kurs-bg: #FD5E53;
+  --kurs-bg: #A02128;
   --kurs-ink: #FFFFFF;
   --paper: #FFFFFF;
-  --sel: #FFF0EF;
-  --sel-line: #FD5E53;
-  --sel-dot: #FD5E53;
+  --sel: #FBECEE;
+  --sel-line: #A02128;
+  --sel-dot: #A02128;
   --on-sel-dot: #FFFFFF;
-  --seg: #FFF0EF;
-  --tab-on: #FD5E53;
+  --seg: #FBECEE;
+  --tab-on: #A02128;
   --ok: #2D6E47;
   --ok-soft: #E4F1E8;
-  --bad: #FD5E53;
-  --bad-soft: #FFF0EF;
+  --bad: #A02128;
+  --bad-soft: #FBECEE;
   --warn: #B26F12;
   --part: #FFF3E0;
-  --answered: #FCD5D2;
+  --answered: #E6C8CB;
   --weak: #E39A50;
   --mark-ok: #2FA866;
-  --mark-bad: #FD5E53;
-  --focus: #FD5E53;
-  --shadow: 0 2px 4px rgba(253, 94, 83, .12), 0 4px 14px rgba(15, 29, 58, .05);
+  --mark-bad: #A02128;
+  --focus: #A02128;
+  --shadow: 0 2px 4px rgba(160, 33, 40, .08), 0 4px 14px rgba(15, 29, 58, .05);
   --f-body: Aptos, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --f-display: "Aptos Display", Aptos, "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --r-karte: 18px;
@@ -56,38 +56,38 @@
   --surface-2: #1c305e;
   --ink: #EAF0FC;
   --muted: #9AAECF;
-  --line: #FD5E53;
-  --hair: #8A3731;
-  --brand: #FD5E53;
-  --brand-bg: #FD5E53;
+  --line: #A02128;
+  --hair: #6E1B20;
+  --brand: #A02128;
+  --brand-bg: #A02128;
   --head-bg: #16264c;
   --on-head: #EAF0FC;
-  --kw-bg: #1E325E;
-  --kw-hover: #263E73;
-  --brand-soft: rgba(253, 94, 83, 0.16);
-  --brand-fl: rgba(253, 94, 83, 0.28);
-  --brand-line: #FD5E53;
+  --kw-bg: #223768;
+  --kw-hover: #2a437d;
+  --brand-soft: rgba(160, 33, 40, 0.18);
+  --brand-fl: rgba(160, 33, 40, 0.3);
+  --brand-line: #A02128;
   --on-brand: #FFFFFF;
-  --kurs-bg: #FD5E53;
+  --kurs-bg: #A02128;
   --kurs-ink: #FFFFFF;
   --paper: #1c305e;
-  --sel: rgba(253, 94, 83, 0.24);
-  --sel-line: #FD5E53;
-  --sel-dot: #FD5E53;
+  --sel: rgba(160, 33, 40, 0.25);
+  --sel-line: #A02128;
+  --sel-dot: #A02128;
   --on-sel-dot: #FFFFFF;
-  --seg: #1E325E;
-  --tab-on: #FD5E53;
+  --seg: #223768;
+  --tab-on: #A02128;
   --ok: #52B77A;
   --ok-soft: #143B25;
-  --bad: #FD5E53;
-  --bad-soft: rgba(253, 94, 83, 0.2);
+  --bad: #A02128;
+  --bad-soft: rgba(160, 33, 40, 0.22);
   --warn: #E5A84B;
   --part: #4A3B22;
-  --answered: #42262B;
+  --answered: #3E242E;
   --weak: #E39A50;
   --mark-ok: #52B77A;
-  --mark-bad: #FD5E53;
-  --focus: #FD5E53;
+  --mark-bad: #A02128;
+  --focus: #A02128;
   --shadow: 0 2px 4px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
   color-scheme: dark;
 }
@@ -314,13 +314,14 @@ p { margin: 0; }
 
 .opt.is-bad { background: var(--bad-soft) !important; border-color: var(--bad) !important; }
 .opt.is-bad .let { background: var(--bad) !important; border-color: var(--bad) !important; color: #fff !important; }
-.opt.is-bad .badge { color: var(--bad); background: rgba(253, 94, 83, .18); }
+.opt.is-bad .badge { color: var(--bad); background: rgba(160, 33, 40, .18); }
 
 .opt.is-miss { background: var(--surface) !important; border: 2px dashed var(--ok) !important; }
 .opt.is-miss .let { border-color: var(--ok) !important; color: var(--ok) !important; background: transparent !important; }
 .opt.is-miss .badge { color: var(--ok); background: var(--ok-soft); border: 1px solid var(--ok); }
 .opt.is-muted { opacity: .45; }
 
+/* Lückentext & Zuordnung */
 .lt { font-size: 1.08rem; line-height: 2.55; }
 select.gap { font-size: 1rem; line-height: 1.25; min-height: 2.3rem; margin: .1rem .12rem; padding: .2rem .5rem;
   border: 1.5px solid var(--line); border-bottom-width: 2.5px; border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
@@ -457,7 +458,7 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.54 · Keine amtliche Prüfungshilfe · powered by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.55 · Keine amtliche Prüfungshilfe · powered by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -560,6 +561,7 @@ async function ladeKursUndStarte() {
   DATA.konf = { kurs: cfg.id, prefix: cfg.prefix, schema: cfg.schema, dauer: cfg.dauer, bestehenPct: cfg.bestehenPct };
   KURS = cfg.id; PREFIX = cfg.prefix; SCHEMA = cfg.schema; BESTEHEN_PCT = cfg.bestehenPct; DAUER = cfg.dauer;
 
+  /* Die Schleife wurde auf bis zu 8 Antworten (i <= 8) erhöht */
   DATA.fragen = rows.map(r => {
     const katName = r.Kategorie || 'Allgemein';
     DATA.kat[katName] = katName;
@@ -576,7 +578,7 @@ async function ladeKursUndStarte() {
     if (fTyp === 'MC') {
       const loesung = String(r['Korrekte Lösung'] || '').toLowerCase();
       const opts = [];
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 8; i++) {
         const val = r['Antwort ' + i];
         if (val && String(val).trim()) {
           const t = String(val).trim();
@@ -586,7 +588,7 @@ async function ladeKursUndStarte() {
       q.o = opts;
     } else if (fTyp === 'ZO') {
       q.t = 'ZO'; q.z = [];
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 8; i++) {
         const val = r['Antwort ' + i];
         if (val && String(val).includes('->')) {
           q.z.push(String(val).split('->').map(s => s.trim()));
@@ -603,7 +605,7 @@ async function ladeKursUndStarte() {
           corrMap[k.trim().toLowerCase()] = v.trim();
         }
       });
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 8; i++) {
         const val = r['Antwort ' + i];
         if (val && String(val).includes('Optionen:')) {
           const rawOpts = String(val).split('Optionen:')[1].split(',').map(s => s.trim()).filter(Boolean);
