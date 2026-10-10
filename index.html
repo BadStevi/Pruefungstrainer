@@ -474,7 +474,7 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 · BetaVersion 0.57 · KEINE AMTLICHE PRüFUNGSHILFE · powered by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.57 · Keine amtliche Prüfungshilfe · powered by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -519,7 +519,6 @@ const KURSE_DEF = {
   }
 };
 
-/* SVG Generierung verwendet nun CSS Variablen (var(--surface)) zur nahtlosen Theme-Anpassung */
 function makeDgSvg(sterne, farbe) {
   const xs = sterne === 1 ? [60] : (sterne === 2 ? [40, 80] : [26, 60, 94]);
   const p = xs.map(x => `<polygon points="${x},10 ${x+4},16 ${x+10},16 ${x+5},20 ${x+7},26 ${x},22 ${x-7},26 ${x-5},20 ${x-10},16 ${x-4},16" fill="${farbe}"/>`).join('');
@@ -857,10 +856,17 @@ function renderFehlerLearning(main) {
         '<span class="tag learn">Lernmappen-Ausschnitt · Frage ' + curNum + ' von ' + total + '</span>' +
         '<span class="small muted">Thema: ' + esc(q.k) + '</span>' +
       '</div>' +
-      '<h2 class="mappe-t" style="color:var(--brand);">📖 Wissen auffrischen vor der Frage</h2>' +
-      '<p class="small muted">Lies dir die theoretischen Grundlagen aus der Lernmappe durch. Anschließend kannst du die Frage mit frischem Wissen lösen:</p>' +
-      '<div class="mappe-content">' +
-        '<p style="font-size:1.02rem; font-weight:700; margin-bottom:.5rem; color:var(--brand);">' + esc(q.k) + '</p>' +
+      '<h2 class="mappe-t" style="color:var(--brand);">📖 Wissen auffrischen</h2>' +
+      '<p class="small muted">Bevor du die Frage erneut beantwortest, lies dir die Theorie dazu durch, um sie gleich richtig zu lösen:</p>' +
+      
+      /* NEU: Einblendung der konkreten Frage */
+      '<div class="note" style="border-color:var(--warn); background:var(--part); margin-top:.2rem;">' +
+        '<div style="font-size:.75rem; font-weight:700; color:var(--warn); text-transform:uppercase; margin-bottom:.3rem; letter-spacing:.05em;">Die anstehende Frage:</div>' +
+        '<div class="qtext" style="font-size:1.05rem; margin:0; color:var(--ink);">' + esc(q.q) + '</div>' +
+      '</div>' +
+
+      '<div class="mappe-content" style="margin-top:.4rem;">' +
+        '<p style="font-size:1.02rem; font-weight:700; margin-bottom:.5rem; color:var(--brand);">Lernmappe: ' + esc(q.k) + '</p>' +
         '<p style="line-height:1.55; white-space:pre-line;">' + esc(q.mappe || q.e || 'Grundlagen nach Feuerwehr-Dienstvorschriften.') + '</p>' +
         (q.s ? '<p class="src" style="margin-top:.6rem;"><b>Vorschrift / Quelle:</b> ' + esc(q.s) + '</p>' : '') +
       '</div>' +
