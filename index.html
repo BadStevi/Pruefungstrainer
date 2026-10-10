@@ -8,42 +8,42 @@
 :root, :root[data-theme="light"] {
   --bg: #e8f0fe;
   --surface: #FFFFFF;
-  --surface-2: #F4F7FC;
+  --surface-2: #F5F7FC;
   --ink: #1F2430;
   --muted: #566175;
-  --line: #ff6372;
-  --hair: #ffa8b1;
-  --brand: #ff6372;
-  --brand-bg: #ff6372;
+  --line: #A02128;
+  --hair: #D97E83;
+  --brand: #A02128;
+  --brand-bg: #A02128;
   --head-bg: #FFFFFF;
   --on-head: #1F2430;
-  --kw-bg: #FFEBEF;
-  --kw-hover: #FFD6DC;
-  --brand-soft: #FFF0F2;
-  --brand-fl: #FFE0E4;
-  --brand-line: #ff6372;
+  --kw-bg: #FBECEE;
+  --kw-hover: #F6D6D9;
+  --brand-soft: #FDF2F3;
+  --brand-fl: #F5D5D7;
+  --brand-line: #A02128;
   --on-brand: #FFFFFF;
-  --kurs-bg: #ff6372;
+  --kurs-bg: #A02128;
   --kurs-ink: #FFFFFF;
   --paper: #FFFFFF;
-  --sel: #FFEBEF;
-  --sel-line: #ff6372;
-  --sel-dot: #ff6372;
+  --sel: #FBECEE;
+  --sel-line: #A02128;
+  --sel-dot: #A02128;
   --on-sel-dot: #FFFFFF;
-  --seg: #FFEBEF;
-  --tab-on: #ff6372;
+  --seg: #FBECEE;
+  --tab-on: #A02128;
   --ok: #2D6E47;
   --ok-soft: #E4F1E8;
-  --bad: #ff6372;
-  --bad-soft: #FFEBEF;
+  --bad: #A02128;
+  --bad-soft: #FBECEE;
   --warn: #B26F12;
   --part: #FFF3E0;
-  --answered: #FFCDD2;
+  --answered: #E6C8CB;
   --weak: #E39A50;
   --mark-ok: #2FA866;
-  --mark-bad: #ff6372;
-  --focus: #ff6372;
-  --shadow: 0 2px 4px rgba(255, 99, 114, .08), 0 4px 14px rgba(15, 29, 58, .05);
+  --mark-bad: #A02128;
+  --focus: #A02128;
+  --shadow: 0 2px 4px rgba(160, 33, 40, .08), 0 4px 14px rgba(15, 29, 58, .05);
   --f-body: Aptos, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --f-display: "Aptos Display", Aptos, "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --r-karte: 18px;
@@ -56,38 +56,38 @@
   --surface-2: #1c305e;
   --ink: #EAF0FC;
   --muted: #9AAECF;
-  --line: #ff6372;
-  --hair: #853640;
-  --brand: #ff6372;
-  --brand-bg: #ff6372;
+  --line: #A02128;
+  --hair: #6E1B20;
+  --brand: #A02128;
+  --brand-bg: #A02128;
   --head-bg: #16264c;
   --on-head: #EAF0FC;
   --kw-bg: #223768;
   --kw-hover: #2a437d;
-  --brand-soft: rgba(255, 99, 114, 0.16);
-  --brand-fl: rgba(255, 99, 114, 0.28);
-  --brand-line: #ff6372;
+  --brand-soft: rgba(160, 33, 40, 0.18);
+  --brand-fl: rgba(160, 33, 40, 0.3);
+  --brand-line: #A02128;
   --on-brand: #FFFFFF;
-  --kurs-bg: #ff6372;
+  --kurs-bg: #A02128;
   --kurs-ink: #FFFFFF;
   --paper: #1c305e;
-  --sel: rgba(255, 99, 114, 0.24);
-  --sel-line: #ff6372;
-  --sel-dot: #ff6372;
+  --sel: rgba(160, 33, 40, 0.25);
+  --sel-line: #A02128;
+  --sel-dot: #A02128;
   --on-sel-dot: #FFFFFF;
   --seg: #223768;
-  --tab-on: #ff6372;
+  --tab-on: #A02128;
   --ok: #52B77A;
   --ok-soft: #143B25;
-  --bad: #ff6372;
-  --bad-soft: rgba(255, 99, 114, 0.2);
+  --bad: #A02128;
+  --bad-soft: rgba(160, 33, 40, 0.22);
   --warn: #E5A84B;
   --part: #4A3B22;
-  --answered: #422a39;
+  --answered: #3E242E;
   --weak: #E39A50;
   --mark-ok: #52B77A;
-  --mark-bad: #ff6372;
-  --focus: #ff6372;
+  --mark-bad: #A02128;
+  --focus: #A02128;
   --shadow: 0 2px 4px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
   color-scheme: dark;
 }
@@ -122,7 +122,6 @@ button, select, input { font: inherit; color: inherit; }
 .kopf-t { font: 800 clamp(1.9rem, 6.6vw, 2.55rem)/1.04 var(--f-display); letter-spacing: -.012em; margin: 0; color: var(--brand); }
 .kopf-s { margin: 0; font-size: 1rem; color: var(--muted); }
 
-/* Theme Schieberegler */
 .theme-switch-wrap {
   display: inline-flex;
   align-items: center;
@@ -266,14 +265,13 @@ p { margin: 0; }
 
 .opt.is-bad { background: var(--bad-soft) !important; border-color: var(--bad) !important; }
 .opt.is-bad .let { background: var(--bad) !important; border-color: var(--bad) !important; color: #fff !important; }
-.opt.is-bad .badge { color: var(--bad); background: rgba(255, 99, 114, .18); }
+.opt.is-bad .badge { color: var(--bad); background: rgba(160, 33, 40, .18); }
 
 .opt.is-miss { background: var(--surface) !important; border: 2px dashed var(--ok) !important; }
 .opt.is-miss .let { border-color: var(--ok) !important; color: var(--ok) !important; background: transparent !important; }
 .opt.is-miss .badge { color: var(--ok); background: var(--ok-soft); border: 1px solid var(--ok); }
 .opt.is-muted { opacity: .45; }
 
-/* Lückentext & Zuordnung */
 .lt { font-size: 1.08rem; line-height: 2.55; }
 select.gap { font-size: 1rem; line-height: 1.25; min-height: 2.3rem; margin: .1rem .12rem; padding: .2rem .5rem;
   border: 1.5px solid var(--line); border-bottom-width: 2.5px; border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
@@ -410,7 +408,7 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">Keine amtliche Prüfungshilfe · Stand Oktober 2026 · powered by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.53 · Keine amtliche Prüfungshilfe · powered by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -419,7 +417,6 @@ const SUPABASE_URL = 'https://murdhqrttralnzzoorlv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11cmRocXJ0dHJhbG56em9vcmx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0ODE5MzMsImV4cCI6MjEwNzA1NzkzM30.D2utm2BhyBdPdhjIocz_RuR3I3hGqdAlZktpq7OUNJo';
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-/* Theme Umschaltung & Persistenz */
 function initTheme() {
   const saved = localStorage.getItem('trainer_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   setTheme(saved);
@@ -925,6 +922,8 @@ function renderFehlerLearning(main) {
 
   h += '</article>';
   main.innerHTML = h;
+
+  window._curUebung = { q: q, it: it };
 }
 
 window.fehlerGeheZuFrage = function() { fehlerMode.phase = 'frage'; render(); };
