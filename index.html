@@ -5,90 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Prüfungstrainer</title>
 <style>
+/* LIGHT THEME (Basierend auf der Bild-Farbpalette) */
 :root, :root[data-theme="light"] {
-  --bg: #e8f0fe;
-  --surface: #FFFFFF;
-  --surface-2: #F5F7FC;
-  --ink: #1F2430;
-  --muted: #566175;
-  --line: #A02128;
-  --hair: #D97E83;
-  --brand: #A02128;
-  --brand-bg: #A02128;
+  --bg: #F8F4E6;              /* Cremeweiß als warmer Hintergrund */
+  --surface: #FFFFFF;         /* Reine weiße Karten für hohen Kontrast */
+  --surface-2: #F0EAD6;
+  --ink: #413C58;             /* Dunkelblau als scharfe Textfarbe */
+  --muted: #6B6580;           /* Gedimmtes Dunkelblau */
+  --line: #E54F6D;            /* Leuchtendes Pink/Rot */
+  --hair: #F198A9;
+  --brand: #E54F6D;
+  --brand-bg: #E54F6D;
   --head-bg: #FFFFFF;
-  --on-head: #1F2430;
-  --kw-bg: #FBECEE;
-  --kw-hover: #F6D6D9;
-  --brand-soft: #FDF2F3;
-  --brand-fl: #F5D5D7;
-  --brand-line: #A02128;
+  --on-head: #413C58;
+  --kw-bg: rgba(229, 79, 109, 0.08);
+  --kw-hover: rgba(229, 79, 109, 0.15);
+  --brand-soft: rgba(229, 79, 109, 0.08);
+  --brand-fl: rgba(229, 79, 109, 0.15);
+  --brand-line: #E54F6D;
   --on-brand: #FFFFFF;
-  --kurs-bg: #A02128;
+  --kurs-bg: #E54F6D;
   --kurs-ink: #FFFFFF;
   --paper: #FFFFFF;
-  --sel: #FBECEE;
-  --sel-line: #A02128;
-  --sel-dot: #A02128;
+  --sel: rgba(229, 79, 109, 0.08);
+  --sel-line: #E54F6D;
+  --sel-dot: #E54F6D;
   --on-sel-dot: #FFFFFF;
-  --seg: #FBECEE;
-  --tab-on: #A02128;
+  --seg: rgba(65, 60, 88, 0.05); /* Dezenter dunkler Tab-Hintergrund */
+  --tab-on: #E54F6D;
   --ok: #2D6E47;
   --ok-soft: #E4F1E8;
-  --bad: #A02128;
-  --bad-soft: #FBECEE;
+  --bad: #E54F6D;
+  --bad-soft: rgba(229, 79, 109, 0.1);
   --warn: #B26F12;
   --part: #FFF3E0;
-  --answered: #E6C8CB;
+  --answered: rgba(229, 79, 109, 0.12);
   --weak: #E39A50;
   --mark-ok: #2FA866;
-  --mark-bad: #A02128;
-  --focus: #A02128;
-  --shadow: 0 2px 4px rgba(160, 33, 40, .08), 0 4px 14px rgba(15, 29, 58, .05);
+  --mark-bad: #E54F6D;
+  --focus: #A3CEF1;           /* Hellblauer Fokusring */
+  --shadow: 0 2px 4px rgba(65, 60, 88, .08), 0 4px 14px rgba(65, 60, 88, .05);
   --f-body: Aptos, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --f-display: "Aptos Display", Aptos, "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --r-karte: 18px;
   --r-feld: 12px;
 }
 
+/* DARK THEME (Basierend auf der Bild-Farbpalette) */
 :root[data-theme="dark"] {
-  --bg: #0f1d3a;
-  --surface: #16264c;
-  --surface-2: #1c305e;
-  --ink: #EAF0FC;
-  --muted: #9AAECF;
-  --line: #A02128;
-  --hair: #6E1B20;
-  --brand: #A02128;
-  --brand-bg: #A02128;
-  --head-bg: #16264c;
-  --on-head: #EAF0FC;
-  --kw-bg: #223768;
-  --kw-hover: #2a437d;
-  --brand-soft: rgba(160, 33, 40, 0.18);
-  --brand-fl: rgba(160, 33, 40, 0.3);
-  --brand-line: #A02128;
-  --on-brand: #FFFFFF;
-  --kurs-bg: #A02128;
-  --kurs-ink: #FFFFFF;
-  --paper: #1c305e;
-  --sel: rgba(160, 33, 40, 0.25);
-  --sel-line: #A02128;
-  --sel-dot: #A02128;
-  --on-sel-dot: #FFFFFF;
-  --seg: #223768;
-  --tab-on: #A02128;
+  --bg: #2B283B;              /* Abgedunkeltes Dunkelblau für Tiefe */
+  --surface: #413C58;         /* Das Original-Dunkelblau für die Karten */
+  --surface-2: #544E72;
+  --ink: #F8F4E6;             /* Das Cremeweiß als Textfarbe */
+  --muted: #A3CEF1;           /* Das Hellblau für Sekundärtexte! */
+  --line: #E54F6D;            /* Pink/Rot für Ränder */
+  --hair: #A93F55;
+  --brand: #E54F6D;
+  --brand-bg: #E54F6D;
+  --head-bg: #413C58;
+  --on-head: #F8F4E6;
+  --kw-bg: rgba(229, 79, 109, 0.15);
+  --kw-hover: rgba(229, 79, 109, 0.25);
+  --brand-soft: rgba(229, 79, 109, 0.15);
+  --brand-fl: rgba(229, 79, 109, 0.25);
+  --brand-line: #E54F6D;
+  --on-brand: #F8F4E6;
+  --kurs-bg: #E54F6D;
+  --kurs-ink: #F8F4E6;
+  --paper: #413C58;
+  --sel: rgba(229, 79, 109, 0.2);
+  --sel-line: #E54F6D;
+  --sel-dot: #E54F6D;
+  --on-sel-dot: #F8F4E6;
+  --seg: #2B283B;
+  --tab-on: #E54F6D;
   --ok: #52B77A;
-  --ok-soft: #143B25;
-  --bad: #A02128;
-  --bad-soft: rgba(160, 33, 40, 0.22);
+  --ok-soft: rgba(82, 183, 122, 0.15);
+  --bad: #E54F6D;
+  --bad-soft: rgba(229, 79, 109, 0.15);
   --warn: #E5A84B;
   --part: #4A3B22;
-  --answered: #3E242E;
+  --answered: rgba(229, 79, 109, 0.15);
   --weak: #E39A50;
   --mark-ok: #52B77A;
-  --mark-bad: #A02128;
-  --focus: #A02128;
-  --shadow: 0 2px 4px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
+  --mark-bad: #E54F6D;
+  --focus: #A3CEF1;           /* Hellblauer Fokusring */
+  --shadow: 0 2px 4px rgba(0, 0, 0, .25), 0 4px 14px rgba(0, 0, 0, .2);
   color-scheme: dark;
 }
 
@@ -205,10 +207,7 @@ button, select, input { font: inherit; color: inherit; }
   box-sizing: border-box;
 }
 .kw:hover { background: var(--kw-hover); }
-.kw:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: -2px;
-}
+.kw:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
 .kw.an { background: var(--kurs-bg); color: var(--kurs-ink); cursor: default; }
 
 .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--seg); border-radius: 14px; border: 1.5px solid var(--line); align-self: flex-start; max-width: 100%; }
@@ -225,7 +224,7 @@ button, select, input { font: inherit; color: inherit; }
 }
 .tabs button:hover { color: var(--brand); }
 .tabs button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
-.tabs button[aria-selected="true"] { background: var(--tab-on); color: #fff; box-shadow: var(--shadow); }
+.tabs button[aria-selected="true"] { background: var(--tab-on); color: var(--on-brand); box-shadow: var(--shadow); }
 
 main { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
 h2, h3 { text-wrap: balance; margin: 0; }
@@ -256,7 +255,7 @@ p { margin: 0; }
   padding: .55rem 1.15rem; cursor: pointer; font-weight: 600; font-size: 1rem; line-height: 1.15;
   display: inline-flex; align-items: center; justify-content: center; gap: .45rem; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 .btn:hover { background: var(--surface-2); }
-.btn.primary { background: var(--brand-bg); border-color: var(--brand-bg); color: #fff; }
+.btn.primary { background: var(--brand-bg); border-color: var(--brand-bg); color: var(--on-brand); }
 .btn.primary:hover { filter: brightness(1.08); }
 .btn.danger { color: var(--bad); border-color: var(--bad); background: var(--surface); }
 .btn.danger:hover { background: var(--bad-soft); }
@@ -273,7 +272,7 @@ p { margin: 0; }
 .chip[aria-pressed="true"] { background: var(--sel); border-color: var(--line); color: var(--brand); font-weight: 600; }
 .chip[aria-pressed="true"] .hk { background: var(--sel-dot); border-color: var(--sel-dot); }
 .chip[aria-pressed="true"] .hk::after { content: ""; position: absolute; left: .33rem; top: .14rem; width: .26rem; height: .52rem;
-  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  border: solid var(--on-sel-dot); border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
 .banner { background: var(--brand-soft); box-shadow: none; border: 2px solid var(--line); }
 .banner-learn { background: var(--part); box-shadow: none; border: 2px solid var(--warn); }
@@ -305,7 +304,7 @@ p { margin: 0; }
   border: 1.5px solid var(--line); color: var(--brand); background: var(--surface); flex: none; }
 .opt .ot { font-size: 1.02rem; line-height: 1.38; overflow-wrap: anywhere; }
 .opts:not([disabled]) .opt:has(input:checked) { background: var(--sel); border-color: var(--line); }
-.opts:not([disabled]) .opt:has(input:checked) .let { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opts:not([disabled]) .opt:has(input:checked) .let { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
 
 .opt .badge { font-size: .78rem; font-weight: 700; white-space: nowrap; padding: .25rem .6rem; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; }
 .opt.is-ok { background: var(--ok-soft) !important; border-color: var(--ok) !important; }
@@ -314,14 +313,13 @@ p { margin: 0; }
 
 .opt.is-bad { background: var(--bad-soft) !important; border-color: var(--bad) !important; }
 .opt.is-bad .let { background: var(--bad) !important; border-color: var(--bad) !important; color: #fff !important; }
-.opt.is-bad .badge { color: var(--bad); background: rgba(160, 33, 40, .18); }
+.opt.is-bad .badge { color: var(--bad); background: rgba(229, 79, 109, .15); }
 
 .opt.is-miss { background: var(--surface) !important; border: 2px dashed var(--ok) !important; }
 .opt.is-miss .let { border-color: var(--ok) !important; color: var(--ok) !important; background: transparent !important; }
 .opt.is-miss .badge { color: var(--ok); background: var(--ok-soft); border: 1px solid var(--ok); }
 .opt.is-muted { opacity: .45; }
 
-/* Lückentext & Zuordnung */
 .lt { font-size: 1.08rem; line-height: 2.55; }
 select.gap { font-size: 1rem; line-height: 1.25; min-height: 2.3rem; margin: .1rem .12rem; padding: .2rem .5rem;
   border: 1.5px solid var(--line); border-bottom-width: 2.5px; border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
@@ -458,7 +456,7 @@ thead th { background: var(--brand-fl); color: var(--brand); font-size: .72rem; 
   </nav>
 
   <main id="main" aria-live="polite"></main>
-  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.55 · Keine amtliche Prüfungshilfe · powered by steven</footer>
+  <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.56 · Keine amtliche Prüfungshilfe · powered by steven</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -561,7 +559,6 @@ async function ladeKursUndStarte() {
   DATA.konf = { kurs: cfg.id, prefix: cfg.prefix, schema: cfg.schema, dauer: cfg.dauer, bestehenPct: cfg.bestehenPct };
   KURS = cfg.id; PREFIX = cfg.prefix; SCHEMA = cfg.schema; BESTEHEN_PCT = cfg.bestehenPct; DAUER = cfg.dauer;
 
-  /* Die Schleife wurde auf bis zu 8 Antworten (i <= 8) erhöht */
   DATA.fragen = rows.map(r => {
     const katName = r.Kategorie || 'Allgemein';
     DATA.kat[katName] = katName;
