@@ -94,52 +94,31 @@ button, select, input { font: inherit; color: inherit; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--muted); border-top-color: var(--brand); border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; }
 
-/* ========================================================================
-   RESPONSIVES LAYOUT: Sidebar (PC) vs. Bottom-Bar (Mobile)
-   ======================================================================== */
+/* LAYOUT: Sidebar (PC) vs. Bottom-Bar (Mobile) */
 .app-layout { display: flex; min-height: 100vh; }
-
-/* Sidebar für PC & Tablet */
-.sidebar {
-  width: 260px; background: var(--surface); border-right: 1px solid var(--line);
-  display: flex; flex-direction: column; padding: 1.5rem 1rem; gap: 2rem;
-  position: sticky; top: 0; height: 100vh; z-index: 10;
-  box-shadow: var(--shadow);
-}
+.sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--line); display: flex; flex-direction: column; padding: 1.5rem 1rem; gap: 2rem; position: sticky; top: 0; height: 100vh; z-index: 10; box-shadow: var(--shadow); }
 .sidebar-logo { font: 800 1.3rem/1.1 var(--f-display); background: var(--brand-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding-left: 0.5rem; }
 .sidebar-nav { display: flex; flex-direction: column; gap: 0.5rem; }
-.sidebar-link {
-  display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 1rem; border-radius: var(--r-feld);
-  color: var(--muted); font-weight: 600; text-decoration: none; transition: all 0.2s; background: transparent; border: none; cursor: pointer; text-align: left; width: 100%;
-}
+.sidebar-link { display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 1rem; border-radius: var(--r-feld); color: var(--muted); font-weight: 600; text-decoration: none; transition: all 0.2s; background: transparent; border: none; cursor: pointer; text-align: left; width: 100%; }
 .sidebar-link:hover { background: var(--surface-2); color: var(--ink); }
 .sidebar-link.active { background: var(--brand-soft); color: var(--brand); font-weight: 700; }
 
-/* Hauptinhalt Bereich */
 .main-content-wrapper { flex: 1; max-width: 46rem; margin: 0 auto; padding: 1.5rem 16px 4rem; display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
 
-/* Mobile Bottom Bar (Wird nur auf Handys angezeigt) */
-.mobile-bottom-bar {
-  display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: var(--surface);
-  border-top: 1px solid var(--line); z-index: 100; padding: 0.5rem 1rem;
-  justify-content: space-around; align-items: center; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
-}
-.mobile-nav-item {
-  display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none;
-  color: var(--muted); font-size: 0.75rem; font-weight: 600; cursor: pointer; text-decoration: none; padding: 4px;
-}
+.mobile-bottom-bar { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: var(--surface); border-top: 1px solid var(--line); z-index: 100; padding: 0.5rem 1rem; justify-content: space-around; align-items: center; box-shadow: 0 -4px 10px rgba(0,0,0,0.05); }
+.mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; color: var(--muted); font-size: 0.75rem; font-weight: 600; cursor: pointer; text-decoration: none; padding: 4px; }
 .mobile-nav-item.active { color: var(--brand); }
 
 @media (max-width: 768px) {
   .sidebar { display: none; }
   .mobile-bottom-bar { display: flex; }
-  .main-content-wrapper { padding-bottom: 5rem; } /* Platz für untere Leiste */
+  .main-content-wrapper { padding-bottom: 5rem; }
 }
 
 /* Header & Navigation */
 .kopf { background: var(--head-bg); color: var(--on-head); border: 1px solid var(--line); border-radius: var(--r-karte); padding: 1.25rem 1.4rem 1.45rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .5rem; transition: background 0.3s ease; }
 .kopf-top-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
-.kopf-t { font: 800 clamp(1.9rem, 6.6vw, 2.55rem)/1.04 var(--f-display); letter-spacing: -.012em; margin: 0; color: var(--ink); transition: color 0.3s ease;}
+.kopf-t { font: 800 clamp(1.9rem, 6.6vw, 2.55rem)/1.04 var(--f-display); letter-spacing: -.012em; margin: 0; color: var(--ink); }
 .kopf-s { margin: 0; font-size: 1rem; color: var(--muted); }
 
 .header-actions { display: flex; align-items: center; gap: 0.8rem; }
@@ -149,7 +128,7 @@ button, select, input { font: inherit; color: inherit; }
 
 /* Theme Toggle */
 .theme-toggle-wrap { display: inline-flex; }
-.theme-toggle-label { position: relative; display: inline-flex; background: var(--kw-bg); border: 1px solid var(--line); border-radius: 999px; padding: 4px; cursor: pointer; box-shadow: inset 0 2px 4px rgba(0,0,0,0.03); user-select: none; -webkit-tap-highlight-color: transparent; }
+.theme-toggle-label { position: relative; display: inline-flex; background: var(--kw-bg); border: 1px solid var(--line); border-radius: 999px; padding: 4px; cursor: pointer; box-shadow: inset 0 2px 4px rgba(0,0,0,0.03); user-select: none; }
 .theme-toggle-text { position: relative; z-index: 1; padding: 4px 14px; font-size: .85rem; font-weight: 600; color: var(--muted); transition: color 0.3s ease; }
 .theme-toggle-bg { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); background: var(--surface); border-radius: 999px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); border: 1px solid var(--line); }
 #theme-toggle:not(:checked) ~ .theme-toggle-label .light-text { color: var(--ink); }
@@ -163,12 +142,12 @@ button, select, input { font: inherit; color: inherit; }
 @media (min-width: 520px) { .kurs { flex-direction: row; align-items: center; gap: .6rem; } }
 .kurs-l { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .kurswahl { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 14px; background: var(--kw-bg); border: 1px solid var(--line); width: 100%; box-sizing: border-box; }
-.kw { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: .35rem .85rem; border-radius: 10px; font-weight: 600; font-size: .92rem; color: var(--ink); text-decoration: none; white-space: nowrap; border: 0; background: transparent; cursor: pointer; flex: 1 1 auto; text-align: center; -webkit-tap-highlight-color: transparent; transition: background 0.2s; }
+.kw { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: .35rem .85rem; border-radius: 10px; font-weight: 600; font-size: .92rem; color: var(--ink); text-decoration: none; white-space: nowrap; border: 0; background: transparent; cursor: pointer; flex: 1 1 auto; text-align: center; transition: background 0.2s; }
 .kw:hover { background: var(--kw-hover); }
 .kw.an { background: var(--brand-grad); color: var(--kurs-ink); cursor: default; }
 
 .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--seg); border-radius: 14px; border: 1px solid var(--line); align-self: flex-start; max-width: 100%; }
-.tabs button { border: 0; background: transparent; min-height: 38px; padding: 0 1.1rem; border-radius: 10px; cursor: pointer; font-weight: 600; color: var(--muted); -webkit-tap-highlight-color: transparent; transition: color 0.2s; }
+.tabs button { border: 0; background: transparent; min-height: 38px; padding: 0 1.1rem; border-radius: 10px; cursor: pointer; font-weight: 600; color: var(--muted); transition: color 0.2s; }
 .tabs button:hover { color: var(--ink); }
 .tabs button[aria-selected="true"] { background: var(--tab-on); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
 
@@ -186,7 +165,7 @@ p { margin: 0; }
 
 .karte { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-karte); padding: 1.2rem 1.25rem 1.35rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .9rem; min-width: 0; transition: background 0.3s ease, box-shadow 0.3s ease; }
 
-.btn { min-height: 48px; border: 1px solid var(--line); border-radius: var(--r-feld); background: var(--surface-2); color: var(--ink); padding: .55rem 1.15rem; cursor: pointer; font-weight: 600; font-size: 1rem; line-height: 1.15; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; text-decoration: none; -webkit-tap-highlight-color: transparent; box-shadow: 0 2px 5px rgba(0,0,0,0.03); transition: filter 0.2s, background 0.2s;}
+.btn { min-height: 48px; border: 1px solid var(--line); border-radius: var(--r-feld); background: var(--surface-2); color: var(--ink); padding: .55rem 1.15rem; cursor: pointer; font-weight: 600; font-size: 1rem; line-height: 1.15; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.03); transition: filter 0.2s, background 0.2s;}
 .btn:hover { filter: brightness(0.95); }
 .btn.primary { background: var(--brand-grad); border-color: transparent; color: #fff; box-shadow: 0 4px 14px rgba(255, 59, 124, 0.25); }
 .btn.primary:hover { filter: brightness(1.1); }
@@ -196,6 +175,7 @@ p { margin: 0; }
 .btn.leise { min-height: 40px; border-color: transparent; background: transparent; color: var(--brand); padding-inline: .3rem; text-decoration: underline; box-shadow: none; }
 .btn.grow { flex: 1 1 auto; }
 
+/* Chips, Banner & Fakten */
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chip { min-height: 42px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--muted); padding: .35rem .9rem .35rem .6rem; cursor: pointer; font-size: .93rem; display: inline-flex; gap: .5rem; align-items: center; text-align: left; transition: background 0.2s, color 0.2s;}
 .chip:hover { color: var(--ink); background: var(--kw-hover); }
@@ -226,7 +206,7 @@ p { margin: 0; }
 .qtext { font: 600 1.22rem/1.38 var(--f-body); overflow-wrap: anywhere; }
 
 .opts { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
-.opt { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .8rem; align-items: center; min-height: 56px; padding: .6rem .85rem; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background 0.2s, filter 0.2s; }
+.opt { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .8rem; align-items: center; min-height: 56px; padding: .6rem .85rem; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; cursor: pointer; transition: background 0.2s, filter 0.2s; }
 .opt:hover { filter: brightness(0.97); }
 .opt input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
 .opt .let { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .85rem; border: 1px solid var(--line); color: var(--muted); background: var(--surface); flex: none; }
@@ -466,12 +446,11 @@ window.toggleTheme = function(isChecked) { setTheme(isChecked ? 'dark' : 'light'
 /* ==========================================
    HAUPTMENÜ NAVIGATION (Kurse, Reader, Profil)
    ========================================= */
-let CURRENT_MAIN_VIEW = 'courses'; // 'courses', 'reader', 'profile'
+let CURRENT_MAIN_VIEW = 'courses';
 
 window.switchNav = function(view) {
   CURRENT_MAIN_VIEW = view;
   
-  // Sidebar & Mobile Bar aktiv Status anpassen
   document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.mobile-nav-item').forEach(el => el.classList.remove('active'));
   
@@ -486,7 +465,7 @@ window.switchNav = function(view) {
     document.getElementById('mob-nav-reader').classList.add('active');
     document.getElementById('kurs-container').style.display = 'none';
     document.getElementById('view-tabs').style.display = 'none';
-    renderEBookReader();
+    renderEBookReader('Truppführer'); // Standard-Lehrgang im Reader
   } else if (view === 'profile') {
     document.querySelector('.sidebar-link:nth-child(3)').classList.add('active');
     document.getElementById('mob-nav-profile').classList.add('active');
@@ -497,38 +476,46 @@ window.switchNav = function(view) {
 };
 
 /* ==========================================
-   E-BOOK READER (Nur Online, Geschützt)
+   E-BOOK READER (Geschützt & Live aus DB)
    ========================================= */
-async function renderEBookReader() {
+async function renderEBookReader(lehrgangName) {
   const main = document.getElementById('main');
-  main.innerHTML = '<p class="note"><span class="spinner" style="margin-right:8px;"></span> Lade digitale Lernmappen aus der Cloud ...</p>';
+  
+  // Lehrgangs-Auswahlleiste für den Reader oben anzeigen
+  let h = '<section class="karte">' +
+    '<span class="eyebrow">Digitales Nachschlagewerk</span>' +
+    '<h2 class="titel">Lernmappen & Vorschriften</h2>' +
+    '<p class="small muted">Sicherer Online-Reader. Inhalte geschützt gegen Kopieren und Download.</p>' +
+    '<div class="kurswahl" style="margin-top:0.5rem;">' +
+      '<button class="kw ' + (lehrgangName === 'Truppmann' ? 'an' : '') + '" onclick="renderEBookReader(\'Truppmann\')">Truppmann</button>' +
+      '<button class="kw ' + (lehrgangName === 'Truppführer' ? 'an' : '') + '" onclick="renderEBookReader(\'Truppführer\')">Truppführer</button>' +
+      '<button class="kw ' + (lehrgangName === 'Verbandsführer' ? 'an' : '') + '" onclick="renderEBookReader(\'Verbandsführer\')">Verbandsführer</button>' +
+    '</div>' +
+    '</section>';
+
+  main.innerHTML = h + '<p class="note"><span class="spinner" style="margin-right:8px;"></span> Lade Kapitel für ' + lehrgangName + '...</p>';
 
   try {
-    // Lädt alle Themen/Mappen aus Supabase
-    const { data, error } = await db.from('Hintergrundwissen').select('frage_id, text').limit(20);
+    const { data, error } = await db.from('lernmappen').select('id, kapitel_titel, inhalt').eq('lehrgang', lehrgangName);
     
     if (error || !data || !data.length) {
-      main.innerHTML = '<section class="karte"><h2 class="titel">Digitale Lernmappen</h2><p class="muted">Aktuell sind noch keine Lernmappen in der Cloud hinterlegt.</p></section>';
+      main.innerHTML = h + '<section class="karte"><p class="muted">Keine Lernmappen für diesen Lehrgang in der Datenbank gefunden.</p></section>';
       return;
     }
 
-    let h = '<section class="karte">' +
-      '<span class="eyebrow">Digitales Nachschlagewerk</span>' +
-      '<h2 class="titel">Lernmappen & Vorschriften</h2>' +
-      '<p class="small muted">Sicherer Online-Reader. Inhalte können nicht kopiert oder heruntergeladen werden.</p>' +
-      '<div class="stack" style="margin-top:1rem;" oncopy="return false" oncut="return false" oncontextmenu="return false">';
-
-    data.forEach((item, idx) => {
-      h += '<div class="karte" style="background:var(--surface-2); box-shadow:none; user-select:none;">' +
-        '<h3 style="color:var(--brand); margin-bottom:.4rem;">Dokument / Vorschrift #' + (idx + 1) + '</h3>' +
-        '<div style="font-size:0.95rem; line-height:1.6; white-space:pre-line; color:var(--ink);">' + esc(item.text) + '</div>' +
-      '</div>';
+    let readerHtml = h + '<div class="stack" style="user-select:none; -webkit-user-select:none;" oncopy="return false" oncut="return false" oncontextmenu="return false">';
+    
+    data.forEach((kap, idx) => {
+      readerHtml += '<details class="review-card">' +
+        '<summary><div class="review-header"><h3 style="color:var(--brand);">' + esc(kap.kapitel_titel) + '</h3><span class="review-toggle-btn">Lesen <span class="review-toggle-icon">▼</span></span></div></summary>' +
+        '<div class="review-content"><div style="font-size: 0.98rem; line-height: 1.65; white-space: pre-line; color: var(--ink);">' + esc(kap.inhalt) + '</div></div>' +
+      '</details>';
     });
 
-    h += '</div></section>';
-    main.innerHTML = h;
+    readerHtml += '</div>';
+    main.innerHTML = readerHtml;
   } catch (e) {
-    main.innerHTML = '<section class="karte"><p class="warnung">Fehler beim Laden des Readers.</p></section>';
+    main.innerHTML = h + '<section class="karte"><p class="note warnung">Fehler beim Laden des Readers.</p></section>';
   }
 }
 
@@ -543,12 +530,12 @@ function renderProfileHub() {
 
   if (currentUser) {
     h += '<p>E-Mail: <b>' + esc(currentUser.email) + '</b></p>' +
-      '<div class="note" style="margin-top:.5rem;">Status: <b>Free-Mitglied</b> (Alle Grundfunktionen freigeschaltet)</div>' +
+      '<div class="note" style="margin-top:.5rem;">Status: <b>Free-Mitglied</b></div>' +
       '<div class="row" style="margin-top:1rem;">' +
-      '<button class="btn primary" onclick="alert(\'Stripe Checkout wird hier später geöffnet!\')">⭐ Auf Premium upgraden</button>' +
+      '<button class="btn primary" onclick="alert(\'Stripe Checkout folgt in Kürze!\')">⭐ Auf Premium upgraden</button>' +
       '<button class="btn danger" onclick="handleLogout()">Abmelden</button></div>';
   } else {
-    h += '<p class="muted">Du bist aktuell nicht angemeldet. Melde dich an, um deinen Lernfortschritt geräteübergreifend zu synchronisieren.</p>' +
+    h += '<p class="muted">Du bist aktuell nicht angemeldet. Melde dich an, um deinen Lernfortschritt zu speichern.</p>' +
       '<div class="row" style="margin-top:1rem;">' +
       '<button class="btn primary" onclick="openAuthModal()">Anmelden / Registrieren</button></div>';
   }
@@ -799,7 +786,7 @@ function starte() {
 }
 
 function render() {
-  if (CURRENT_MAIN_VIEW !== 'courses') return; // Nur zeichnen wenn Kurse aktiv
+  if (CURRENT_MAIN_VIEW !== 'courses') return;
   if (timerId) { clearInterval(timerId); timerId = null; }
   const main = document.getElementById('main');
   if (ANSICHT === 'exam' && exam) renderExam(main);
