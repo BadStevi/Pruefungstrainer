@@ -380,7 +380,15 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
     </nav>
 
     <main id="main" aria-live="polite"></main>
-    <footer class="foot" id="foot" style="text-align: center;">Oktober 2026 | v0.57 · Keine amtliche Prüfungshilfe · powered by steven</footer>
+    
+    <!-- FOOTER MIT RECHTSTEXT-LINKS -->
+    <footer class="foot" id="foot" style="text-align: center;">
+      Oktober 2026 | v0.57 · Keine amtliche Prüfungshilfe · powered by steven<br>
+      <div style="margin-top: 0.8rem; display: flex; justify-content: center; gap: 1.5rem;">
+        <a href="#" onclick="switchNav('impressum')" style="color: var(--brand); text-decoration: none; font-weight: 600;">Impressum</a>
+        <a href="#" onclick="switchNav('datenschutz')" style="color: var(--brand); text-decoration: none; font-weight: 600;">Datenschutz</a>
+      </div>
+    </footer>
   </div>
 
 </div>
@@ -392,7 +400,7 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
   <button class="mobile-nav-item" id="mob-nav-profile" onclick="switchNav('profile')">👤 <span>Profil</span></button>
 </nav>
 
-<!-- AUTH MODAL - FIX: Das onclick wurde hier entfernt! -->
+<!-- AUTH MODAL -->
 <div id="auth-modal" class="modal-overlay">
   <div class="modal-box">
     <button class="modal-close" onclick="closeAuthModal()">×</button>
@@ -415,6 +423,15 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
         <label for="auth-password">Passwort</label>
         <input type="password" id="auth-password" placeholder="••••••••" required minlength="6">
       </div>
+      
+      <!-- NEU: Checkbox (nur bei Registrierung sichtbar) -->
+      <div id="auth-legal-check" style="display: none; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.2rem;">
+        <input type="checkbox" id="auth-agb" style="width: 1.2rem; height: 1.2rem; flex: none; cursor: pointer; margin-top: 0.15rem;">
+        <label for="auth-agb" style="font-size: 0.8rem; color: var(--muted); line-height: 1.4; font-weight: 400; cursor: pointer;">
+          Ich habe die <a href="#" onclick="closeAuthModal(); switchNav('datenschutz');" style="color: var(--brand);">Datenschutzerklärung</a> zur Kenntnis genommen und akzeptiere die Nutzungsbedingungen (AGB).
+        </label>
+      </div>
+
       <button type="submit" class="btn primary" style="width: 100%; margin-top: 0.5rem;" id="auth-submit-btn">Einloggen</button>
     </form>
     
@@ -444,7 +461,7 @@ function setTheme(mode) {
 window.toggleTheme = function(isChecked) { setTheme(isChecked ? 'dark' : 'light'); };
 
 /* ==========================================
-   HAUPTMENÜ NAVIGATION (Kurse, Reader, Profil)
+   HAUPTMENÜ NAVIGATION (Kurse, Reader, Profil, Rechtliches)
    ========================================= */
 let CURRENT_MAIN_VIEW = 'courses';
 
@@ -453,6 +470,9 @@ window.switchNav = function(view) {
   
   document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.mobile-nav-item').forEach(el => el.classList.remove('active'));
+  
+  document.getElementById('kurs-container').style.display = 'none';
+  document.getElementById('view-tabs').style.display = 'none';
   
   if (view === 'courses') {
     document.querySelector('.sidebar-link:nth-child(1)').classList.add('active');
@@ -463,17 +483,77 @@ window.switchNav = function(view) {
   } else if (view === 'reader') {
     document.querySelector('.sidebar-link:nth-child(2)').classList.add('active');
     document.getElementById('mob-nav-reader').classList.add('active');
-    document.getElementById('kurs-container').style.display = 'none';
-    document.getElementById('view-tabs').style.display = 'none';
     renderEBookReader('Truppführer');
   } else if (view === 'profile') {
     document.querySelector('.sidebar-link:nth-child(3)').classList.add('active');
     document.getElementById('mob-nav-profile').classList.add('active');
-    document.getElementById('kurs-container').style.display = 'none';
-    document.getElementById('view-tabs').style.display = 'none';
     renderProfileHub();
+  } else if (view === 'impressum') {
+    renderImpressum();
+  } else if (view === 'datenschutz') {
+    renderDatenschutz();
   }
 };
+
+/* ==========================================
+   IMPRESSUM & DATENSCHUTZ RENDERING
+   ========================================= */
+function renderImpressum() {
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <section class="karte">
+      <span class="eyebrow">Rechtliche Pflichtangaben</span>
+      <h2 class="titel">Impressum</h2>
+      <h3 style="margin-top:1.5rem;">Angaben gemäß § 5 TMG</h3>
+      <p>Steven Rust<br>BSR - Brandschutz Rust<br>Kettener Straße 67<br>36419 Geisa OT Spahl</p>
+      <h3 style="margin-top:1.5rem;">Kontakt</h3>
+      <p>E-Mail: <a href="mailto:info@fwtrainer.de" style="color:var(--brand);">info@fwtrainer.de</a><br>
+      <span class="muted small">Telefonnummer auf Wunsch ausgeblendet. Bitte kontaktieren Sie uns jederzeit gerne per E-Mail. Wir antworten kurzfristig.</span></p>
+      <h3 style="margin-top:1.5rem;">Umsatzsteuer-ID</h3>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br><em class="muted">[Wird nach Zuteilung durch das Finanzamt ergänzt]</em></p>
+      <h3 style="margin-top:1.5rem;">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+      <p>Steven Rust<br>Kettener Straße 67<br>36419 Geisa OT Spahl</p>
+      <h3 style="margin-top:1.5rem;">EU-Streitschlichtung</h3>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <br><a href="https://ec.europa.eu/consumers/odr/" target="_blank" style="color:var(--brand); word-break: break-all;">https://ec.europa.eu/consumers/odr/</a>.<br>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </section>
+  `;
+}
+
+function renderDatenschutz() {
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <section class="karte">
+      <span class="eyebrow">Ihre Daten sind sicher</span>
+      <h2 class="titel">Datenschutzerklärung</h2>
+
+      <h3 style="margin-top:1.5rem;">1. Datenschutz auf einen Blick & Verantwortlicher</h3>
+      <p><strong>Verantwortliche Stelle:</strong><br>
+      Steven Rust<br>BSR - Brandschutz Rust<br>Kettener Straße 67<br>36419 Geisa OT Spahl<br>
+      E-Mail: <a href="mailto:info@fwtrainer.de" style="color:var(--brand);">info@fwtrainer.de</a></p>
+      <p><strong>Allgemeine Hinweise</strong><br>
+      Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (DSGVO, BDSG) sowie dieser Datenschutzerklärung. Wenn Sie diese Website benutzen oder den digitalen Prüfungstrainer verwenden, werden verschiedene personenbezogene Daten erhoben.</p>
+
+      <h3 style="margin-top:1.5rem;">2. Webhosting (Strato) & Server-Log-Dateien</h3>
+      <p>Wir hosten unsere Website bei der STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin.</p>
+      <p>Wenn Sie unsere Website besuchen, erfasst Strato automatisch verschiedene Logfiles inklusive Ihrer IP-Adresse. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer technisch fehlerfreien Darstellung und der Optimierung unserer Website – hierzu müssen die Server-Log-Files erfasst werden. Wir haben mit Strato einen Vertrag über Auftragsverarbeitung (AVV) geschlossen, um die datenschutzkonforme Verarbeitung sicherzustellen.</p>
+
+      <h3 style="margin-top:1.5rem;">3. E-Learning-Plattform & Zahlungsabwicklung (Stripe)</h3>
+      <p><strong>Registrierung für den Prüfungstrainer</strong><br>
+      Für die Nutzung unseres digitalen E-Learning-Angebots (Prüfungstrainer) müssen Sie ein Nutzerkonto anlegen. Dabei erfassen wir die von Ihnen eingegebenen Daten (insbesondere E-Mail-Adresse, Passwort sowie Ihre Lernfortschritte und Testergebnisse). Diese Daten verarbeiten wir ausschließlich zum Zweck der Bereitstellung der Lernplattform und der Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO).</p>
+      <p><strong>Zahlungsabwicklung über Stripe</strong><br>
+      Wenn Sie einen kostenpflichtigen Zugang zu unserer Lernsoftware erwerben, wird die Zahlung über den Zahlungsdienstleister Stripe (Stripe Payments Europe, Ltd., 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, Irland) abgewickelt.</p>
+      <ul style="padding-left:1.2rem; margin-top:0.5rem; display:flex; flex-direction:column; gap:0.4rem;">
+        <li>Wir geben Ihre Zahlungsdaten (z. B. Name, Kaufbetrag, Kontoverbindung oder Kreditkartendaten) im Rahmen der Zahlungsabwicklung an Stripe weiter.</li>
+        <li>Die Weitergabe erfolgt ausschließlich zum Zweck der Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO).</li>
+        <li>Stripe kann zur Betrugsprävention und Bonitätsprüfung eigene Cookies setzen und Daten in die USA übermitteln. Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Weitere Details finden Sie in der Datenschutzerklärung von Stripe: <a href="https://stripe.com/de/privacy" target="_blank" style="color:var(--brand);">https://stripe.com/de/privacy</a>.</li>
+      </ul>
+
+      <h3 style="margin-top:1.5rem;">4. Ihre Rechte als Nutzer</h3>
+      <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die Zukunft widerrufen. Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde (Thüringer Landesbeauftragter für den Datenschutz) zu.</p>
+    </section>
+  `;
+}
 
 /* ==========================================
    E-BOOK READER (Geschützt & Live aus DB)
@@ -495,7 +575,7 @@ async function renderEBookReader(lehrgangName) {
   main.innerHTML = h + '<p class="note"><span class="spinner" style="margin-right:8px;"></span> Lade Kapitel für ' + lehrgangName + '...</p>';
 
   try {
-    const { data, error } = await db.from('lernmappen').select('id, kapitel_titel, inhalt').eq('lehrgang', lehrgangName);
+    const { data, error } = await db.from('lernmappen').select('id, kapitel_titel, inhalt').eq('lehrgang', lehrgangName).order('reihenfolge', { ascending: true });
     
     if (error || !data || !data.length) {
       main.innerHTML = h + '<section class="karte"><p class="muted">Keine Lernmappen für diesen Lehrgang in der Datenbank gefunden.</p></section>';
@@ -578,17 +658,11 @@ function updateAuthUI(user) {
 window.openAuthModal = function() { document.getElementById('auth-modal').classList.add('open'); };
 window.closeAuthModal = function() { document.getElementById('auth-modal').classList.remove('open'); };
 
-/* ==========================================
-   BUGFIX: POPUP SCHLIEßEN (Verhindert Bubbling)
-   ========================================= */
+/* POPUP SCHLIEßEN (Verhindert Bubbling) */
 document.getElementById('auth-modal').addEventListener('mousedown', function(e) {
-  // Schließt sich NUR, wenn exakt auf den dunklen Hintergrund geklickt wird
-  if (e.target === this) {
-    closeAuthModal();
-  }
+  if (e.target === this) { closeAuthModal(); }
 });
 document.querySelector('.modal-box').addEventListener('mousedown', function(e) {
-  // Stoppt das Weiterreichen des Klicks zum Hintergrund (besonders bei Autocomplete)
   e.stopPropagation();
 });
 
@@ -597,10 +671,22 @@ window.switchAuthMode = function(mode) {
   authMode = mode;
   document.getElementById('auth-message').className = 'auth-msg';
   const isLogin = mode === 'login';
+  
   document.getElementById('tab-login').classList.toggle('active', isLogin);
   document.getElementById('tab-register').classList.toggle('active', !isLogin);
   document.getElementById('auth-title').textContent = isLogin ? 'Willkommen zurück' : 'Konto erstellen';
   document.getElementById('auth-submit-btn').textContent = isLogin ? 'Einloggen' : 'Jetzt Registrieren';
+  
+  // Checkbox Logik (nur bei Registrierung einblenden und zwingend erforderlich machen)
+  const legalCheck = document.getElementById('auth-legal-check');
+  const agbInput = document.getElementById('auth-agb');
+  if (isLogin) {
+    legalCheck.style.display = 'none';
+    agbInput.required = false;
+  } else {
+    legalCheck.style.display = 'flex';
+    agbInput.required = true;
+  }
 };
 
 window.handleAuthSubmit = async function(e) {
@@ -741,7 +827,7 @@ const store = {
 };
 
 function ladeFilter() {
-  const f = store.get('filt', null); let kat = {}; Object.keys(DATA.kat).forEach(k => { kat[k] = true; });
+  const f = store.get('filt', null); let kat = {}; Object.keys(DATA.kat).forEach(k => { kat[k] = f.kat ? f.kat[k] : true; });
   if (f && f.kat) { Object.keys(f.kat).forEach(k => { if (DATA.kat[k]) kat[k] = f.kat[k]; }); }
   return { kat };
 }
@@ -869,7 +955,7 @@ window.brichExamAb = function() { if (confirm("Möchtest du die laufende Prüfun
 
 window.starteFehlerLernmodus = function() {
   const fehlerIds = getFehlerFragenIds();
-  if (!fehlerIds.length) { alert("Super! Aktuell sind keine fehlerhaften Fragen in class Historie vermerkt."); return; }
+  if (!fehlerIds.length) { alert("Super! Aktuell sind keine fehlerhaften Fragen in deiner Historie vermerkt."); return; }
   fehlerMode = { aktiv: true, fragen: shuffle(fehlerIds), curIdx: 0, phase: 'mappe', it: null, beantwortet: false };
   geh('fehler-learning');
 };
