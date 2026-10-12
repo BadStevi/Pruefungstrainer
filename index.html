@@ -392,8 +392,8 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
   <button class="mobile-nav-item" id="mob-nav-profile" onclick="switchNav('profile')">👤 <span>Profil</span></button>
 </nav>
 
-<!-- AUTH MODAL -->
-<div id="auth-modal" class="modal-overlay" onclick="if(event.target === this) closeAuthModal()">
+<!-- AUTH MODAL - FIX: Das onclick wurde hier entfernt! -->
+<div id="auth-modal" class="modal-overlay">
   <div class="modal-box">
     <button class="modal-close" onclick="closeAuthModal()">×</button>
     <h2 class="modal-titel" id="auth-title">Willkommen zurück</h2>
@@ -577,6 +577,22 @@ function updateAuthUI(user) {
 
 window.openAuthModal = function() { document.getElementById('auth-modal').classList.add('open'); };
 window.closeAuthModal = function() { document.getElementById('auth-modal').classList.remove('open'); };
+
+/* ==========================================
+   BUGFIX: POPUP SCHLIEßEN (Verhindert Bubbling)
+   ========================================= */
+document.getElementById('auth-modal').addEventListener('mousedown', function(e) {
+  // Schließt sich NUR, wenn exakt auf den dunklen Hintergrund geklickt wird
+  if (e.target === this) {
+    closeAuthModal();
+  }
+});
+document.querySelector('.modal-box').addEventListener('mousedown', function(e) {
+  // Stoppt das Weiterreichen des Klicks zum Hintergrund (besonders bei Autocomplete)
+  e.stopPropagation();
+});
+
+
 window.switchAuthMode = function(mode) {
   authMode = mode;
   document.getElementById('auth-message').className = 'auth-msg';
