@@ -331,7 +331,7 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
 .auth-tab { flex: 1; background: transparent; border: none; padding: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--muted); cursor: pointer; border-radius: 999px; transition: all 0.2s; }
 .auth-tab.active { background: var(--surface); color: var(--ink); box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid var(--line); }
 </style>
-<!-- PDF.js Bibliotheken für den professionellen Online-Reader -->
+<!-- PDF.js Bibliotheken -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -341,7 +341,6 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
 <body>
 <div class="app-layout">
   
-  <!-- DESKTOP / TABLET SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo">Prüfungstrainer</div>
     <nav class="sidebar-nav">
@@ -351,7 +350,6 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
     </nav>
   </aside>
 
-  <!-- HAUPTINHALT -->
   <div class="main-content-wrapper">
     <header class="kopf" id="kopf">
       <div class="kopf-top-row">
@@ -379,7 +377,6 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
       </div>
     </header>
 
-    <!-- Sub-Tabs für Kurse -->
     <nav class="tabs" id="view-tabs" role="tablist" aria-label="Bereiche">
       <button role="tab" id="tab-start" data-view="start" aria-selected="true">Prüfung</button>
       <button role="tab" id="tab-practice" data-view="practice">Üben</button>
@@ -388,7 +385,6 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
 
     <main id="main" aria-live="polite"></main>
     
-    <!-- FOOTER MIT RECHTSTEXT-LINKS -->
     <footer class="foot" id="foot" style="text-align: center;">
       Oktober 2026 · BetaVersion 0.6 · Keine amtliche Prüfungshilfe · powered by steven<br>
       <div style="margin-top: 0.8rem; display: flex; justify-content: center; gap: 1.5rem;">
@@ -400,14 +396,12 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
 
 </div>
 
-<!-- MOBILE BOTTOM BAR -->
 <nav class="mobile-bottom-bar">
   <button class="mobile-nav-item active" id="mob-nav-courses" onclick="switchNav('courses')">🎓 <span>Kurse</span></button>
   <button class="mobile-nav-item" id="mob-nav-reader" onclick="switchNav('reader')">📖 <span>Mappen</span></button>
   <button class="mobile-nav-item" id="mob-nav-profile" onclick="switchNav('profile')">👤 <span>Profil</span></button>
 </nav>
 
-<!-- AUTH MODAL -->
 <div id="auth-modal" class="modal-overlay">
   <div class="modal-box">
     <button class="modal-close" onclick="closeAuthModal()">×</button>
@@ -431,7 +425,6 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
         <input type="password" id="auth-password" placeholder="••••••••" required minlength="6">
       </div>
       
-      <!-- Checkbox (nur bei Registrierung sichtbar) -->
       <div id="auth-legal-check" style="display: none; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.2rem;">
         <input type="checkbox" id="auth-agb" style="width: 1.2rem; height: 1.2rem; flex: none; cursor: pointer; margin-top: 0.15rem;">
         <label for="auth-agb" style="font-size: 0.8rem; color: var(--muted); line-height: 1.4; font-weight: 400; cursor: pointer;">
@@ -452,7 +445,7 @@ thead th { background: var(--surface-2); color: var(--ink); font-size: .72rem; f
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = 'https://murdhqrttralnzzoorlv.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11cmRocXJ0dHJhbG56em9vcmx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3TAINgODE5MzMsImV4cCI6MjEwNzA1NzkzM30.D2utm2BhyBdPdhjIocz_RuR3I3hGqdAlZktpq7OUNJo';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11cmRocXJ0dHJhbG56em9vcmx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0ODE5MzMsImV4cCI6MjEwNzA1NzkzM30.D2utm2BhyBdPdhjIocz_RuR3I3hGqdAlZktpq7OUNJo';
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 function initTheme() {
@@ -467,9 +460,6 @@ function setTheme(mode) {
 }
 window.toggleTheme = function(isChecked) { setTheme(isChecked ? 'dark' : 'light'); };
 
-/* ==========================================
-   HAUPTMENÜ NAVIGATION
-   ========================================= */
 let CURRENT_MAIN_VIEW = 'courses';
 
 window.switchNav = function(view) {
@@ -503,7 +493,7 @@ window.switchNav = function(view) {
 };
 
 /* ==========================================
-   ECHTER PDF-FLIPBOOK / ONLINE READER
+   PDF READER
    ========================================= */
 let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null, scale = 1.2, currentPdfFile = '';
 
@@ -515,7 +505,7 @@ async function renderPDFReader(pdfUrl, lehrgangName) {
     <section class="karte">
       <span class="eyebrow">Digitales Nachschlagewerk</span>
       <h2 class="titel">Lernmappen & Vorschriften</h2>
-      <p class="small muted">Interaktiver Online-Reader. Schützter Original-Dokumentenbetrachter.</p>
+      <p class="small muted">Interaktiver Online-Reader. Geschützter Original-Dokumentenbetrachter.</p>
       <div class="kurswahl" style="margin-top:0.5rem;">
         <button class="kw ${pdfUrl === 'truppmann.pdf' ? 'an' : ''}" onclick="renderPDFReader('truppmann.pdf', 'Truppmann')">Truppmann</button>
         <button class="kw ${pdfUrl === 'truppfuehrer.pdf' ? 'an' : ''}" onclick="renderPDFReader('truppfuehrer.pdf', 'Truppführer')">Truppführer</button>
@@ -614,7 +604,7 @@ window.zoomOut = function() {
 }
 
 /* ==========================================
-   IMPRESSUM & DATENSCHUTZ RENDERING
+   RECHTLICHES & PROFILE
    ========================================= */
 function renderImpressum() {
   const main = document.getElementById('main');
@@ -644,38 +634,14 @@ function renderDatenschutz() {
     <section class="karte">
       <span class="eyebrow">Ihre Daten sind sicher</span>
       <h2 class="titel">Datenschutzerklärung</h2>
-
       <h3 style="margin-top:1.5rem;">1. Datenschutz auf einen Blick & Verantwortlicher</h3>
       <p><strong>Verantwortliche Stelle:</strong><br>
       Steven Rust<br>BSR - Brandschutz Rust<br>Kettener Straße 67<br>36419 Geisa OT Spahl<br>
       E-Mail: <a href="mailto:info@fwtrainer.de" style="color:var(--brand);">info@fwtrainer.de</a></p>
-      <p><strong>Allgemeine Hinweise</strong><br>
-      Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (DSGVO, BDSG) sowie dieser Datenschutzerklärung. Wenn Sie diese Website benutzen oder den digitalen Prüfungstrainer verwenden, werden verschiedene personenbezogene Daten erhoben.</p>
-
-      <h3 style="margin-top:1.5rem;">2. Webhosting (Strato) & Server-Log-Dateien</h3>
-      <p>Wir hosten unsere Website bei der STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin.</p>
-      <p>Wenn Sie unsere Website besuchen, erfasst Strato automatisch verschiedene Logfiles inklusive Ihrer IP-Adresse. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer technisch fehlerfreien Darstellung und der Optimierung unserer Website – hierzu müssen die Server-Log-Files erfasst werden. Wir haben mit Strato einen Vertrag über Auftragsverarbeitung (AVV) geschlossen, um die datenschutzkonforme Verarbeitung sicherzustellen.</p>
-
-      <h3 style="margin-top:1.5rem;">3. E-Learning-Plattform & Zahlungsabwicklung (Stripe)</h3>
-      <p><strong>Registrierung für den Prüfungstrainer</strong><br>
-      Für die Nutzung unseres digitalen E-Learning-Angebots (Prüfungstrainer) müssen Sie ein Nutzerkonto anlegen. Dabei erfassen wir die von Ihnen eingegebenen Daten (insbesondere E-Mail-Adresse, Name, Passwort sowie Ihre Lernfortschritte und Testergebnisse). Diese Daten verarbeiten wir ausschließlich zum Zweck der Bereitstellung der Lernplattform und der Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO).</p>
-      <p><strong>Zahlungsabwicklung über Stripe</strong><br>
-      Wenn Sie einen kostenpflichtigen Zugang zu unserer Lernsoftware erwerben, wird die Zahlung über den Zahlungsdienstleister Stripe (Stripe Payments Europe, Ltd., 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, Irland) abgewickelt.</p>
-      <ul style="padding-left:1.2rem; margin-top:0.5rem; display:flex; flex-direction:column; gap:0.4rem;">
-        <li>Wir geben Ihre Zahlungsdaten (z. B. Name, Kaufbetrag, Kontoverbindung oder Kreditkartendaten) im Rahmen der Zahlungsabwicklung an Stripe weiter.</li>
-        <li>Die Weitergabe erfolgt ausschließlich zum Zweck der Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO).</li>
-        <li>Stripe kann zur Betrugsprävention und Bonitätsprüfung eigene Cookies setzen und Daten in die USA übermitteln. Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Weitere Details finden Sie in der Datenschutzerklärung von Stripe: <a href="https://stripe.com/de/privacy" target="_blank" style="color:var(--brand);">https://stripe.com/de/privacy</a>.</li>
-      </ul>
-
-      <h3 style="margin-top:1.5rem;">4. Ihre Rechte als Nutzer</h3>
-      <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die Zukunft widerrufen. Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde (Thüringer Landesbeauftragter für den Datenschutz) zu.</p>
     </section>
   `;
 }
 
-/* ==========================================
-   PROFIL HUB
-   ========================================= */
 function renderProfileHub() {
   const main = document.getElementById('main');
   let h = '<section class="karte">' +
@@ -788,7 +754,7 @@ window.handleAuthSubmit = async function(e) {
 window.handleLogout = async function() { await db.auth.signOut(); closeAuthModal(); };
 
 /* ==========================================
-   KURSE & PRÜFUNGSTRAINER
+   KURSE & PRÜFUNGSTRAINER (Optimiert mit Cache & Selektiv-Query)
    ========================================= */
 const KURSE_DEF = {
   tm: { id: 'tm', dbName: 'Truppmann', name: 'Truppmann', prefix: 'tm1.', kopfUnter: 'Truppmannausbildung · Kreisausbildung in Thüringen', schema: { mc: { n: 36, p: 1 }, lt: { n: 0, p: 2 }, zo: { n: 4, p: 2 } }, dauer: 30, bestehenPct: 60 },
@@ -811,9 +777,8 @@ let AKTUELLER_KURS_ID = new URLSearchParams(window.location.search).get('kurs') 
 if (!KURSE_DEF[AKTUELLER_KURS_ID]) AKTUELLER_KURS_ID = 'tm';
 
 var DATA = { v: 1, stand: '07.10.2026', kat: {}, fragen: [], konf: {} };
-var CACHE = {};
+var CACHE = {}; // Lokaler Cache für blitzschnellen Kurswechsel
 var stats, hist, tage, exam, filt;
-var fehlerMode = { aktiv: false, fragen: [], curIdx: 0, phase: 'mappe', it: null };
 var KURS, PREFIX, SCHEMA, BESTEHEN_PCT, DAUER, BYID = {}, FR = [];
 var timerId = null;
 
@@ -827,7 +792,7 @@ window.wechsleKurs = function(id) {
 async function ladeKursUndStarte() {
   const cfg = KURSE_DEF[AKTUELLER_KURS_ID];
   const main = document.getElementById('main');
-  main.innerHTML = '<p class="note">Lade Fragenkatalog</p>';
+  main.innerHTML = '<p class="note"><span class="spinner" style="margin-right:8px;"></span> Lade Fragenkatalog...</p>';
 
   document.title = 'Prüfungstrainer ' + cfg.name;
   document.getElementById('kopf-s').textContent = cfg.kopfUnter;
@@ -840,12 +805,17 @@ async function ladeKursUndStarte() {
 
   let rows = CACHE[cfg.dbName];
   if (!rows) {
-    const { data, error } = await db.from('Fragenkatalog').select('*').eq('Kurs', cfg.dbName);
+    // OPTIMIERUNG: Nur notwendige Spalten abrufen statt select('*')
+    const { data, error } = await db.from('Fragenkatalog')
+      .select('ID, id, Kurs, Kategorie, Fragetyp, Fragetext, Erklärung, Quelle, "Korrekte Lösung", "Antwort 1", "Antwort 2", "Antwort 3", "Antwort 4", "Antwort 5", "Antwort 6", "Antwort 7", "Antwort 8"')
+      .eq('Kurs', cfg.dbName);
+      
     if (error || !data || !data.length) {
       main.innerHTML = '<p class="note warnung">Fehler beim Laden aus Supabase: ' + (error ? error.message : 'Keine Fragen gefunden.') + '</p>';
       return;
     }
-    rows = data; CACHE[cfg.dbName] = rows;
+    rows = data; 
+    CACHE[cfg.dbName] = rows; // Im Cache speichern
   }
 
   DATA.kat = {};
@@ -855,7 +825,7 @@ async function ladeKursUndStarte() {
   DATA.fragen = rows.map(r => {
     const katName = r.Kategorie || 'Allgemein'; DATA.kat[katName] = katName;
     const fTyp = String(r.Fragetyp || 'MC').trim().toUpperCase();
-    const q = { id: String(r.ID || r.id), k: katName, q: r.Fragetext || '', e: r.Erklärung || '', s: r.Quelle || '', mappe: r.Lernmappe || r['Lernmappe'] || r['Ausschnitt Lernmappe'] || r.Erklärung || '' };
+    const q = { id: String(r.ID || r.id), k: katName, q: r.Fragetext || '', e: r.Erklärung || '', s: r.Quelle || '' };
 
     if (fTyp === 'MC') {
       const loesung = String(r['Korrekte Lösung'] || '').toLowerCase(); const opts = [];
@@ -899,8 +869,7 @@ const store = {
 };
 
 function ladeFilter() {
-  const f = store.get('filt', null); let kat = {}; Object.keys(DATA.kat).forEach(k => { kat[k] = f.kat ? f.kat[k] : true; });
-  if (f && f.kat) { Object.keys(f.kat).forEach(k => { if (DATA.kat[k]) kat[k] = f.kat[k]; }); }
+  const f = store.get('filt', null); let kat = {}; Object.keys(DATA.kat).forEach(k => { kat[k] = f && f.kat ? f.kat[k] : true; });
   return { kat };
 }
 
@@ -934,13 +903,6 @@ function angefangen(it) {
   return it.a.some(v => v && v !== '');
 }
 
-function getFehlerFragenIds() {
-  const ids = new Set();
-  (hist || []).forEach(h => { (h.details || []).forEach(d => { if (d.ant < 1) ids.add(d.id); }); });
-  Object.keys(stats || {}).forEach(id => { if (stats[id] && stats[id].n > stats[id].r) ids.add(id); });
-  return Array.from(ids).filter(id => BYID[id]);
-}
-
 let ANSICHT = 'start';
 function geh(v) {
   ANSICHT = v;
@@ -965,123 +927,7 @@ function render() {
   if (ANSICHT === 'exam' && exam) renderExam(main);
   else if (ANSICHT === 'practice') renderPractice(main);
   else if (ANSICHT === 'history') renderHistory(main);
-  else if (ANSICHT === 'fehler-learning') renderFehlerLearning(main);
   else renderStart(main);
-}
-
-function renderStart(main) {
-  let h = '';
-  if (exam) {
-    h += '<section class="karte banner"><h2 class="titel">Laufende Prüfung</h2><p>Du hast eine unvollendete Prüfung für diesen Kurs.</p>' +
-      '<div class="row"><button class="btn primary" onclick="geh(\'exam\')">Fortsetzen</button><button class="btn danger" onclick="brichExamAb()">Abbrechen</button></div></section>';
-  }
-
-  const fehlerIds = getFehlerFragenIds();
-  if (fehlerIds.length > 0) {
-    h += '<section class="karte banner-learn"><span class="eyebrow" style="color:var(--warn); -webkit-text-fill-color:var(--warn); background:none;">Lernchance</span>' +
-      '<h2 class="titel" style="color:var(--warn);">Fehler gezielt nacharbeiten</h2><p>Es gibt <b>' + fehlerIds.length + ' Fragen</b>, die du bisher noch nicht fehlerfrei beantwortet hast.</p>' +
-      '<div class="row"><button class="btn warn grow" onclick="starteFehlerLernmodus()">📖 Fehler-Training mit Lernmappe starten</button></div></section>';
-  }
-
-  const gesamtFragen = FR.length; let geuebt = 0; Object.keys(stats).forEach(id => { if (stats[id] && stats[id].n) geuebt++; });
-
-  h += '<section class="karte"><span class="eyebrow">' + KURSE_DEF[KURS].name + '</span><h2 class="titel">Prüfung</h2>' +
-    '<p>Simuliere den echten Leistungsnachweis mit Zeitbegrenzung (' + DAUER + ' Min.) und Zufallsfragen.</p>' +
-    '<ul class="facts"><li><b>' + (SCHEMA.mc ? SCHEMA.mc.n : 0) + '</b><span>Multiple-Choice</span></li>' +
-    '<li><b>' + ((SCHEMA.zo ? SCHEMA.zo.n : 0) + (SCHEMA.lt ? SCHEMA.lt.n : 0)) + '</b><span>Zuordnung / Lückentext</span></li>' +
-    '<li><b>' + DAUER + ' Min</b><span>Zeitlimit</span></li><li><b>' + BESTEHEN_PCT + ' %</b><span>Bestehensgrenze</span></li></ul>' +
-    '<button class="btn primary grow" onclick="starteNeuePruefung()">Prüfung starten</button></section>';
-
-  h += '<section class="karte"><h3 class="titel">Lernstand</h3><p>' + geuebt + ' von ' + gesamtFragen + ' Fragen in diesem Kurs geübt.</p>' +
-    '<div class="row"><button class="btn" onclick="geh(\'practice\')">Jetzt Üben</button><button class="btn" onclick="geh(\'history\')">Verlauf ansehen</button>' +
-    (fehlerIds.length > 0 ? '<button class="btn warn" onclick="starteFehlerLernmodus()">📖 ' + fehlerIds.length + ' Fehler trainieren</button>' : '') + '</div></section>';
-  main.innerHTML = h;
-}
-
-window.starteNeuePruefung = function() {
-  const pool = shuffle(FR.slice()); const gewaehlt = [];
-  const mcBedarf = (SCHEMA.mc && SCHEMA.mc.n) || 32; const zoBedarf = (SCHEMA.zo && SCHEMA.zo.n) || 0; const ltBedarf = (SCHEMA.lt && SCHEMA.lt.n) || 0;
-  gewaehlt.push(...pool.filter(q => typ(q) === 'mc').slice(0, mcBedarf), ...pool.filter(q => typ(q) === 'zo').slice(0, zoBedarf), ...pool.filter(q => typ(q) === 'lt').slice(0, ltBedarf));
-  exam = { v: 3, start: Date.now(), dl: Date.now() + DAUER * 60 * 1000, items: shuffle(gewaehlt).map(q => neuesItem(q)), cur: 0 };
-  store.set('exam', exam); geh('exam');
-};
-
-window.brichExamAb = function() { if (confirm("Möchtest du die laufende Prüfung wirklich abbrechen?")) { exam = null; store.del('exam'); geh('start'); } };
-window.starteFehlerLernmodus = function() { alert("Fehler-Training ist im PDF-Modus nicht aktiv."); };
-
-function renderExam(main) {
-  if (!exam || !exam.items.length) { geh('start'); return; }
-  const curIdx = exam.cur; const it = exam.items[curIdx]; const q = BYID[it.id]; const t = typ(q);
-  let restSek = Math.max(0, Math.floor((exam.dl - Date.now()) / 1000)); if (restSek <= 0) { beendeExam(true); return; }
-
-  let h = '<div class="exam-bar"><div class="eb"><span class="eb-t">Frage ' + (curIdx + 1) + ' von ' + exam.items.length + '</span><span class="eb-s">' + esc(q.k) + '</span></div>' +
-    '<div class="eb eb-r" style="display:flex; flex-direction:row; align-items:center; gap:.5rem;"><span class="timer' + (restSek < 300 ? ' low' : '') + '" id="exam-timer">' + Math.floor(restSek / 60) + ':' + String(restSek % 60).padStart(2, '0') + '</span>' +
-    '<button class="btn danger" style="min-height:36px; padding:.2rem .65rem; font-size:.85rem;" onclick="abbrechenExam()">Abbrechen</button></div></div>';
-
-  h += '<article class="karte"><div class="qmeta"><span class="tag">' + esc(q.k) + '</span></div>';
-  if (t !== 'lt') h += '<p class="qtext">' + esc(q.q) + '</p>';
-
-  if (t === 'mc') {
-    h += '<fieldset class="opts">';
-    it.p.forEach((opt, displayIdx) => {
-      const checked = it.sel.includes(displayIdx) ? ' checked' : '';
-      h += '<label class="opt"><input type="checkbox" onchange="toggleExamMc(' + displayIdx + ')"' + checked + '><span class="let">' + String.fromCharCode(65 + displayIdx) + '</span><span class="ot">' + esc(opt.text) + '</span><span></span></label>';
-    });
-    h += '</fieldset>';
-  } else if (t === 'zo') {
-    h += '<div class="zo">';
-    it.r.forEach((zi, j) => {
-      const linksKey = q.z[zi][0]; const svgIcon = SVG_ICONS[linksKey]; const linksHtml = svgIcon ? '<span class="zo-bild">' + svgIcon + '</span>' : '<span class="zo-text">' + esc(linksKey) + '</span>';
-      h += '<div class="zo-row' + (!svgIcon ? ' zo-txt' : '') + '">' + linksHtml + '<select class="zsel' + (it.a[j] ? ' voll' : '') + '" onchange="setExamZo(' + j + ', this.value)"><option value="">-- Bitte wählen --</option>';
-      it.c.forEach((cText) => { h += '<option value="' + esc(cText) + '"' + (it.a[j] === cText ? ' selected' : '') + '>' + esc(cText) + '</option>'; }); h += '</select></div>';
-    });
-    h += '</div>';
-  } else if (t === 'lt') {
-    let text = esc(q.q);
-    q.l.forEach((gap, g) => {
-      let selHtml = '<select class="gap' + (it.a[g] ? ' voll' : '') + '" onchange="setExamLt(' + g + ', this.value)"><option value="">-- Lücke ' + (g + 1) + ' --</option>';
-      it.o[g].forEach((optText) => { selHtml += '<option value="' + esc(optText) + '"' + (it.a[g] === optText ? ' selected' : '') + '>' + esc(optText) + '</option>'; });
-      selHtml += '</select>'; text = text.replace('___', selHtml);
-    });
-    h += '<div class="lt">' + text + '</div>';
-  }
-
-  h += '<div class="split" style="margin-top:1rem;"><button class="btn" onclick="flagFrage()">' + (it.m ? '🚩 Markiert' : '🏳️ Merken') + '</button><div class="row">' +
-    (curIdx > 0 ? '<button class="btn" onclick="gehExamFrage(' + (curIdx - 1) + ')">Zurück</button>' : '') + (curIdx < exam.items.length - 1 ? '<button class="btn primary" onclick="gehExamFrage(' + (curIdx + 1) + ')">Weiter</button>' : '<button class="btn primary" onclick="beendeExam(false)">Prüfung abgeben</button>') + '</div></div></article>';
-
-  main.innerHTML = h;
-
-  timerId = setInterval(() => {
-    let r = Math.max(0, Math.floor((exam.dl - Date.now()) / 1000)); const tEl = document.getElementById('exam-timer');
-    if (tEl) { tEl.textContent = Math.floor(r / 60) + ':' + String(r % 60).padStart(2, '0'); if (r < 300) tEl.classList.add('low'); }
-    if (r <= 0) beendeExam(true);
-  }, 1000);
-}
-
-window.gehExamFrage = function(idx) { exam.cur = idx; store.set('exam', exam); render(); }; 
-window.flagFrage = function() { exam.items[exam.cur].m = exam.items[exam.cur].m ? 0 : 1; store.set('exam', exam); render(); };
-window.toggleExamMc = function(idx) { const it = exam.items[exam.cur]; const pos = it.sel.indexOf(idx); if (pos >= 0) it.sel.splice(pos, 1); else it.sel.push(idx); store.set('exam', exam); render(); };
-window.setExamZo = function(j, val) { exam.items[exam.cur].a[j] = val; store.set('exam', exam); render(); }; 
-window.setExamLt = function(g, val) { exam.items[exam.cur].a[g] = val; store.set('exam', exam); render(); };
-
-window.abbrechenExam = function() {
-  if (!confirm("Prüfung abbrechen?")) return;
-  if (timerId) clearInterval(timerId);
-  exam = null; store.del('exam'); geh('start');
-};
-
-window.beendeExam = function(auto) {
-  if (!auto && !confirm("Prüfung abgeben?")) return;
-  if (timerId) clearInterval(timerId);
-  exam = null; store.del('exam'); geh('start');
-};
-
-function renderPractice(main) {
-  main.innerHTML = '<section class="karte"><h2 class="titel">Übungsmodus</h2><p>Wähle eine Frage zum Üben.</p></section>';
-}
-
-function renderHistory(main) {
-  main.innerHTML = '<section class="karte"><h2 class="titel">Verlauf</h2><p>Dein Lernverlauf.</p></section>';
 }
 
 window.addEventListener('DOMContentLoaded', () => { 
